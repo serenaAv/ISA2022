@@ -1,3 +1,4 @@
+package isa.ProgettoEsame.ClassiProgettoIniziale;
 /*
  * Copyright 2003 Sun Microsystems, Inc.  ALL RIGHTS RESERVED.
  * Use of this software is authorized pursuant to the terms of the license found at
@@ -43,7 +44,7 @@ public class InsertBus {
 			
 			ResultSet rs = stmt.executeQuery(query);
 	
-			System.out.println("Bus di proprietà di City2City: targa, ultima revisione ed ultimo tagliando");
+			System.out.println("Bus di proprietï¿½ di City2City: targa, ultima revisione ed ultimo tagliando");
 			while (rs.next()) {
 				String p = rs.getString("PLATE");
 				Date lr = rs.getDate("DATE_LAST_REV");
