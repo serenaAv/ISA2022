@@ -1,6 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home</title>
+<meta charset="UTF-8"/>
+<style>
+.beta th{
+    background-color:orange;
+    color:white;
+}
+.beta tr:nth-child(2n){
+    background-color: pink;
+}
+table{
+    border-collapse: collapse;
+}
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+</head>
     <body>
-        <h1>You're logged</h1>
+        <div class="topnav">
+        <a href="/" class="active">Home</a>
+        <a href="/travel" id="b">Viaggi</a>
+        <a href="/user" id="c">Utenti registrati</a>
+        <a href="/bus" id="e">Autobus</a>
+        <a href="/link">Collegamenti disponibili</a>
+        </div>
+        <br>
+        <h1 th:inline="text" textalign="center">Welcome [[${#httpServletRequest.remoteUser}]]</h1>
+                    <text>Al momento ti trovi nella Home che può darti accesso a:</text>
+                    <ul>
+                        <li>Sezione viaggi in cui potrai:</li>
+                        <ul>
+                            <li>Registrare un nuovo viaggio</li>
+                            <li>Modificare i viaggi esistenti</li>
+                            <li>Cancellare i viaggi presenti</li>
+                        </ul>
+                        <br>
+                        <li>Sezione utenti registrati in cui potrai</li>
+                        <ul>
+                            <li>Inserire un nuovo utente</li>
+                            <li>Modificare gli utenti esistenti</li>
+                            <li>Cancellare gli utenti presenti</li>
+                        </ul>
+                        <br>
+                        <li>Sezione collegamenti disponibili in cui potrai</li>
+                        <ul>
+                            <li>Inserire un nuovo collegamento</li>
+                            <li>Modificare i collegamenti esistenti</li>
+                            <li>Cancellare i collegamenti presenti</li>
+                        </ul>
+                        <br>
+                        <li>Sezione bus in cui potrai</li>
+                        <ul>
+                            <li>Inserire un nuovo autobus</li>
+                            <li>Modificare le caratteristiche degli autobus presenti</li>
+                            <li>Cancellare un autobus presente</li>
+                        </ul>
+                    </ul>
     </body>
 </html>
