@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import isa.ProgettoEsame.model.*;
 import isa.ProgettoEsame.service.LinkService;
@@ -60,16 +61,30 @@ public class HomeController {
         linkService.saveLink(link);
         return "redirect:/link";
     }
+/*
+@RequestMapping(value="/editlink",method= RequestMethod.POST)
+            public ModelAndView do_update(Link n, BindingResult bindingResult){
+            linkService.saveLink(n);
+            return new ModelAndView("redirect:/link");
+        } 
+    @RequestMapping(value="/link/edit/{id}",method=RequestMethod.GET)
+            public ModelAndView updatesLink(@PathVariable Integer id){
+            ModelAndView mav=new ModelAndView();
+            mav.addObject("link", linkService.getLinkById(id));
+            mav.setViewName("link_edit");
+            return mav;
+        }
+        */
 
-    @GetMapping("/link/update/{id}")
+    @GetMapping("/link/edit/{id}")
     public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
 
-        // get employee from the service
         Link link = linkService.getLinkById(id);
 
         // set employee as a model attribute to pre-populate the form
         model.addAttribute("link", link);
         return "link_edit";
     }
+    
 
 }

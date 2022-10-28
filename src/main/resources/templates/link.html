@@ -135,7 +135,7 @@ table{
                     <td th:text="${link.id}"></td>
                     <td th:text="${link.destination}"></td>
                     <td th:text="${link.time}"></td>
-                    <td> <a th:href="@{/link/update/{id}(id=${link.id})}" class="btn btn-primary btn-sm mb-3">Aggiorna</a>
+                    <td> <a th:href="@{link/edit/{id}(id=${link.id})}" class="btn btn-primary btn-sm mb-3">Aggiorna</a>
                         <a th:href="@{/link/delete/{id}(id=${link.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>
                     </td>
                 </tr>
