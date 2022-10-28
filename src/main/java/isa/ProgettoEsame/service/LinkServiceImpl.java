@@ -16,4 +16,9 @@ public class LinkServiceImpl implements LinkService {
     public List < Link > getAllLinks() {
         return linkRepository.findAll();
     }
+
+    @Override
+    public void deleteLinkById(int id) {
+        this.linkRepository.deleteById(id);
+    }
 }

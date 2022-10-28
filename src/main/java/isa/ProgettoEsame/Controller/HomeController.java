@@ -1,5 +1,6 @@
 package isa.ProgettoEsame.Controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,11 +43,13 @@ public class HomeController {
         return mav;
     }
 
+    
+
     @RequestMapping(value="/link/add",method=RequestMethod.GET)
     public ModelAndView link_add(){
         ModelAndView mav=new ModelAndView();
         mav.setViewName("link_add");
-        mav.addObject("Listalink", linkService.getAllLinks());
+        mav.addObject("link", new Link());
         return mav;
     }
 
@@ -56,5 +59,11 @@ public class HomeController {
         mav.setViewName("link_edit");
         mav.addObject("Listalink", linkService.getAllLinks());
         return mav;
+    }
+
+    @GetMapping("/link/delete/{id}")
+    public String deleteEmployee(@PathVariable(value = "id") int id) {
+        this.linkService.deleteLinkById(id);
+        return "redirect:/link";
     }
 }
