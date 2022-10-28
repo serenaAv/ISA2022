@@ -1,7 +1,9 @@
 package isa.ProgettoEsame.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,17 +55,21 @@ public class HomeController {
         return mav;
     }
 
-    @RequestMapping(value="/link/update/{id}",method=RequestMethod.GET)
-    public ModelAndView link_edit(@PathVariable(value = "id") int id){
-        ModelAndView mav=new ModelAndView();
-        mav.setViewName("link_edit");
-        mav.addObject("Listalink", linkService.getAllLinks());
-        return mav;
-    }
-
-    @GetMapping("/link/delete/{id}")
-    public String deleteEmployee(@PathVariable(value = "id") int id) {
-        this.linkService.deleteLinkById(id);
+    @PostMapping("/saveLink")
+    public String saveLink(@ModelAttribute("link") Link link) {
+        linkService.saveLink(link);
         return "redirect:/link";
     }
+
+    @GetMapping("/link/update/{id}")
+    public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
+
+        // get employee from the service
+        Link link = linkService.getLinkById(id);
+
+        // set employee as a model attribute to pre-populate the form
+        model.addAttribute("link", link);
+        return "link_edit";
+    }
+
 }
