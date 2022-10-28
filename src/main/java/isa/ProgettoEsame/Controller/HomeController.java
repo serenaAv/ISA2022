@@ -1,5 +1,6 @@
 package isa.ProgettoEsame.Controller;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,7 +39,22 @@ public class HomeController {
         ModelAndView mav=new ModelAndView();
         mav.setViewName("link");
         mav.addObject("Listalink", linkService.getAllLinks());
-        mav.addObject("link", new Link());
+        return mav;
+    }
+
+    @RequestMapping(value="/link/add",method=RequestMethod.GET)
+    public ModelAndView link_add(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("link_add");
+        mav.addObject("Listalink", linkService.getAllLinks());
+        return mav;
+    }
+
+    @RequestMapping(value="/link/update/{id}",method=RequestMethod.GET)
+    public ModelAndView link_edit(@PathVariable(value = "id") int id){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("link_edit");
+        mav.addObject("Listalink", linkService.getAllLinks());
         return mav;
     }
 }

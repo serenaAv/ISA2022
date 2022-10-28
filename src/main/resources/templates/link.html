@@ -1,33 +1,8 @@
 <!--
 <!DOCTYPE html>
-<body>
-    <table border="1" class="table table-striped table-responsive-md">
-        <thead>
-            <tr>
-                <th>Link id</th>
-                <th>Link destination</th>
-                <th>Link time</th>
-                <th> Actions </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="link : ${listLinks}">
-                <td th:text="${link.id}"></td>
-                <td th:text="${link.destination}"></td>
-                <td th:text="${link.time}"></td>
-                <td> <a th:href="" class="btn btn-primary">Update</a>
-                    <a th:href="" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</body>
--->
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Libri</title>
+<title>Collegamenti disponibili</title>
 <meta charset="UTF-8"/>
 <style>
 .beta th{
@@ -75,15 +50,98 @@ table{
         <div class="container my-2">
             <h1>Lista collegamenti disponibili</h1>
         <table border="1" class="table table-striped table-responsive-md">
-            <tr align='center'><th><b>Id</b></th><th><b>Destinazione</b></th><th><b>Ore previste</b></th><th><b>Azioni</b></th></tr>
-            <tr th:each="link: ${Listalink}" align='center'>
-                <td th:text="${link.id}"></p></td>
-                <td th:text="${link.destination}"></td>
-                <td th:text="${link.time}"></td>
-                <td><a href="#" th:href="@{|/edit/link${link.id}|}"><img src="/img/edit.png" width="15" height="15"/></a></td>
-                <td><a href="#" th:href="@{|/delete/link${link.id}|}"><img src="/img/delete.png" width="15" height="15"/></a></td> 
-            </tr>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Destinazione</th>
+                    <th>Ore previste</th>
+                    <th>Azioni </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="link : ${Listalink}">
+                    <td th:text="${link.id}"></td>
+                    <td th:text="${link.destination}"></td>
+                    <td th:text="${link.time}"></td>
+                    <td> <a th:href="" class="btn btn-primary">Update</a>
+                        <a th:href="" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         </div>
     </body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Collegamenti</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+    .topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+</style>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/" >Home</a>
+        <a href="/travel" id="b">Viaggi</a>
+        <a href="/user" id="c">Utenti registrati</a>
+        <a href="/bus" id="e">Autobus</a>
+        <a href="/link" class="active">Collegamenti disponibili</a>
+    </div>
+    <br><br>
+    <div class="container sm-3">
+        <h2>Lista collegamenti</h2>
+
+        <a th:href="@{/link/add}" class="btn btn-success btn-sm mb-3"> Aggiungi </a>
+
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>ID Viaggio</th>
+                    <th>Destinazione</th>
+                    <th>Ore previste</th>
+                    <th>Azioni </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="link : ${Listalink}">
+                    <td th:text="${link.id}"></td>
+                    <td th:text="${link.destination}"></td>
+                    <td th:text="${link.time}"></td>
+                    <td> <a th:href="@{/link/update/{id}(id=${link.id})}" class="btn btn-primary btn-sm mb-3">Aggiorna</a>
+                        <a th:href="@{/link/delete/{id}(id=${link.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
 </html>
