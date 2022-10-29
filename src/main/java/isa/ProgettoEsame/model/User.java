@@ -3,25 +3,32 @@ package isa.ProgettoEsame.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "users")
+@Table(name = "User")
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String email;
     private String firstname;
     private String lastname;
-    private Boolean enabled;
+    private LocalDate datebirth;
     private String sex;
-    private LocalDate date_birth;
-    private String role;
+    private Boolean enabled;
+    private String roles;
     private String password;
     private String username;
     
+    public int getId() {
+        return id;
+    }
     
     public String getEmail() {
         return email;
@@ -35,20 +42,20 @@ public class User {
         return lastname;
     }
     
-    public Boolean getEnabled() {
-        return enabled;
+    public LocalDate getDatebirth() {
+        return datebirth;
     }
-    
+
     public String getSex() {
         return sex;
     }
-    
-    public LocalDate getDate_birth() {
-        return date_birth;
+
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoles() {
+        return roles;
     }
 
     public String getPassword() {
@@ -57,6 +64,10 @@ public class User {
 
     public String getUsername() {
         return username;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setEmail(String email) {
@@ -79,12 +90,12 @@ public class User {
         this.sex= sex;
     }
 
-    public void setDete_birth(LocalDate date_birth) {
-        this.date_birth= date_birth;
+    public void setDetebirth(LocalDate datebirth) {
+        this.datebirth= datebirth;
     }
 
-    public void setRole(String role) {
-        this.role= role;
+    public void setRole(String roles) {
+        this.roles= roles;
     }
 
     public void setPassword(String password) {
