@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
 public class User {
 
     @Id
@@ -21,10 +21,9 @@ public class User {
     private String lastname;
     private LocalDate datebirth;
     private String sex;
-    private Boolean enabled;
-    private String roles;
-    private String password;
+    private String role;
     private String username;
+    private String password;
     
     public int getId() {
         return id;
@@ -50,12 +49,8 @@ public class User {
         return sex;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public String getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
     public String getPassword() {
@@ -81,10 +76,6 @@ public class User {
     public void setLastname(String lastname) {
         this.lastname= lastname;
     }
-    
-    public void setEnabled(Boolean enabled) {
-        this.enabled= enabled;
-    }
 
     public void setSex(String sex) {
         this.sex= sex;
@@ -94,8 +85,8 @@ public class User {
         this.datebirth= datebirth;
     }
 
-    public void setRole(String roles) {
-        this.roles= roles;
+    public void setRole(String role) {
+        this.role= role;
     }
 
     public void setPassword(String password) {
