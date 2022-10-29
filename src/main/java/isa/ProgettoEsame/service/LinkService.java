@@ -6,4 +6,6 @@ import isa.ProgettoEsame.model.Link;
 public interface LinkService {
     List < Link > getAllLinks();
     void deleteLinkById(int id);
+    void saveLink(Link link);
+    Link getLinkById(int id);
 }
