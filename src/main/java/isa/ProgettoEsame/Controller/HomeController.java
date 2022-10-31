@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import isa.ProgettoEsame.model.*;
-import isa.ProgettoEsame.service.LinkService;
+import isa.ProgettoEsame.service.*;
+
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -20,6 +23,13 @@ public class HomeController {
 
   @Autowired
   private LinkService linkService;
+  
+  @Autowired
+  private BusService busService;
+
+    /*
+     * LOGIN
+     */
 
     @RequestMapping("/login.html")
     public String login() {
@@ -31,6 +41,10 @@ public class HomeController {
         model.addAttribute("loginError", true);
         return "login.html";
     }
+
+    /*
+     * LINK
+     */
 
     @RequestMapping("/link.html")
     public String link(Model model) {
@@ -46,7 +60,12 @@ public class HomeController {
         return mav;
     }
 
-    
+    @GetMapping("/link/delete/{id}")
+    public String deleteLink(@PathVariable(value = "id") int id) {
+
+        this.linkService.deleteLinkById(id);
+        return "redirect:/link";
+    }
 
     @RequestMapping(value="/link/add",method=RequestMethod.GET)
     public ModelAndView link_add(){
@@ -61,29 +80,66 @@ public class HomeController {
         linkService.saveLink(link);
         return "redirect:/link";
     }
-/*
-@RequestMapping(value="/editlink",method= RequestMethod.POST)
-            public ModelAndView do_update(Link n, BindingResult bindingResult){
-            linkService.saveLink(n);
-            return new ModelAndView("redirect:/link");
-        } 
-    @RequestMapping(value="/link/edit/{id}",method=RequestMethod.GET)
-            public ModelAndView updatesLink(@PathVariable Integer id){
-            ModelAndView mav=new ModelAndView();
-            mav.addObject("link", linkService.getLinkById(id));
-            mav.setViewName("link_edit");
-            return mav;
-        }
-        */
 
     @GetMapping("/link/edit/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
+    public String showFormForUpdate_link(@PathVariable(value = "id") int id, Model model) {
 
         Link link = linkService.getLinkById(id);
 
-        // set employee as a model attribute to pre-populate the form
         model.addAttribute("link", link);
         return "link_edit";
+    }
+
+    /*
+     * BUS
+     */
+
+    @RequestMapping(value="/bus",method=RequestMethod.GET)
+    public ModelAndView bus(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("bus");
+        mav.addObject("Listabus", busService.getAllBus());
+        return mav;
+    }
+
+
+    @GetMapping("/bus/delete/{id}")
+    public String deleteBus(@PathVariable(value = "id") int id) {
+
+        this.busService.deleteBusById(id);
+        return "redirect:/bus";
+    }
+
+    @RequestMapping(value="/bus/add",method=RequestMethod.GET)
+    public ModelAndView bus_add(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("bus_add");
+        mav.addObject("bus", new Bus());
+        return mav;
+    }
+
+    @PostMapping("/saveBus")
+    public String saveBus(@ModelAttribute("bus") Bus bus) {
+        busService.saveBus(bus);
+        return "redirect:/bus";
+    }
+
+    @GetMapping("/bus/edit/{id}")
+    public String showFormForUpdate_bus(@PathVariable(value = "id") int id, Model model) {
+
+        Bus bus = busService.getBusById(id);
+
+        model.addAttribute("bus", bus);
+        return "bus_edit";
+    }
+
+    @GetMapping("/bus/detail/{id}")
+    public String showFormForDetail_bus(@PathVariable(value = "id") int id, Model model) {
+
+        Bus bus = busService.getBusById(id);
+
+        model.addAttribute("bus", bus);
+        return "bus_detail";
     }
     
 
