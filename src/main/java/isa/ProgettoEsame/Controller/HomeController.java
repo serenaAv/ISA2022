@@ -149,6 +149,12 @@ public class HomeController {
      * USER
      */
 
+    @RequestMapping("/logout.html")
+    public String logout() {
+      return "login.html";
+    } 
+
+
     @RequestMapping(value="/user",method=RequestMethod.GET)
     public ModelAndView user(){
         ModelAndView mav=new ModelAndView();

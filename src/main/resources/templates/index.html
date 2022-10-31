@@ -39,11 +39,13 @@ table{
 </head>
     <body>
         <div class="topnav">
-        <a href="/" class="active">Home</a>
-        <a href="/travel" id="b">Viaggi</a>
-        <a href="/user" id="c">Utenti registrati</a>
-        <a href="/bus" id="e">Autobus</a>
-        <a href="/link">Collegamenti disponibili</a>
+            <a href="/" class="active">Home</a>
+            <a href="/travel" id="b">Viaggi</a>
+            <a href="/user" id="c">Utenti registrati</a>
+            <a href="/bus" id="e">Autobus</a>
+            <a href="/link">Collegamenti disponibili</a>
+            <a href="/myProfile" >Mio profilo</a>
+            <a href="/logout" th:action="@{/logout}">Logout</a>
         </div>
         <br>
         <h1 th:inline="text" textalign="center">Welcome [[${#httpServletRequest.remoteUser}]]</h1>
