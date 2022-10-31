@@ -13,23 +13,25 @@
         <hr>
         <h2>Dettaglio bus</h2>
 
-        <form action="#" th:object="${bus}" method="POST">
+        <form action="#" th:object="${user}" method="POST">
             <!-- Add hidden form field to handle update -->
             <label>Targa</label>
-            <input type="text" th:field="*{plate}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{username}" class="form-control mb-4 col-4">
             <label>Anno immatricolazione</label>
-            <input type="text" th:field="*{y}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{firstname}" class="form-control mb-4 col-4">
             <label>Descrizione veicolo</label>
-            <input type="text" th:field="*{description}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{lastname}" class="form-control mb-4 col-4">
             <label>Ultima revisione</label>
-            <input type="date" th:field="*{date_last_rev}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
             <label>Ultimo tagliando</label>
-            <input type="date" th:field="*{date_last_carserv}" class="form-control mb-4 col-4">
+            <input type="text" th:field="*{sex}" class="form-control mb-4 col-4">
+            <label>Ruolo</label>
+            <input type="text" th:field="*{role}" class="form-control mb-4 col-4">
         </form>
 
         <hr>
 
-        <a th:href="@{/bus}"> Torna alla lista</a>
+        <a th:href="@{/user}"> Torna alla lista</a>
     </div>
 </body>
 

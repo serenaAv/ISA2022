@@ -1,31 +1,43 @@
 package isa.ProgettoEsame.model;
 
 
-import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "firstname")
     private String firstname;
+
+    @Column(name = "lastname")
     private String lastname;
-    private LocalDate datebirth;
+
+    @Column(name = "sex")
     private String sex;
+
+    @Column(name = "role")
     private String role;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
     
-    public int getId() {
+    public Integer getId() {
         return id;
     }
     
@@ -41,10 +53,6 @@ public class User {
         return lastname;
     }
     
-    public LocalDate getDatebirth() {
-        return datebirth;
-    }
-
     public String getSex() {
         return sex;
     }
@@ -79,10 +87,6 @@ public class User {
 
     public void setSex(String sex) {
         this.sex= sex;
-    }
-
-    public void setDetebirth(LocalDate datebirth) {
-        this.datebirth= datebirth;
     }
 
     public void setRole(String role) {

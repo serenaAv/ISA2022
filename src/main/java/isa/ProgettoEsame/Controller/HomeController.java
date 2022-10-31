@@ -27,6 +27,9 @@ public class HomeController {
   @Autowired
   private BusService busService;
 
+  @Autowired
+  private UserService userService;
+
     /*
      * LOGIN
      */
@@ -142,5 +145,55 @@ public class HomeController {
         return "bus_detail";
     }
     
+    /*
+     * USER
+     */
 
+    @RequestMapping(value="/user",method=RequestMethod.GET)
+    public ModelAndView user(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("user");
+        mav.addObject("Listauser", userService.getAllUser());
+        return mav;
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable(value = "id") int id) {
+
+        this.userService.deleteUserById(id);
+        return "redirect:/user";
+    }
+
+    @RequestMapping(value="/user/add",method=RequestMethod.GET)
+    public ModelAndView user_add(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("user_add");
+        mav.addObject("user", new User());
+        return mav;
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "redirect:/user";
+    }
+
+    @GetMapping("/user/edit/{id}")
+    public String showFormForUpdate_user(@PathVariable(value = "id") int id, Model model) {
+
+        User user = userService.getUserById(id);
+
+        model.addAttribute("user", user);
+        return "user_edit";
+    }
+
+    @GetMapping("/user/detail/{id}")
+    public String showFormForDetail_user(@PathVariable(value = "id") int id, Model model) {
+
+        User user = userService.getUserById(id);
+
+        model.addAttribute("user", user);
+        return "user_detail";
+    }
+    
 }
