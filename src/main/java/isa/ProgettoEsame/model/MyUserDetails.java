@@ -1,8 +1,11 @@
 package isa.ProgettoEsame.model;
  
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -11,29 +14,30 @@ import org.springframework.security.core.userdetails.UserDetails;
  
 public class MyUserDetails implements UserDetails {
  
-    private String username;
-    private String password;
-    private List<GrantedAuthority> authorities;
+    private User user;
      
     public MyUserDetails(User user) {
-        this.username = user.getUsername();
-        this.password = user.getPassword();
-        this.authorities = Arrays.stream(user.getRole().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        this.user = user;
     }
  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<Role> roles = user.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles){
+            authorities.add(new SimpleGrantedAuthority(role.getRole()));
+        }
         return authorities;
     }
  
     @Override
     public String getPassword() {
-        return password;
+        return user.getPassword();
     }
  
     @Override
     public String getUsername() {
-        return username;
+        return user.getUsername();
     }
  
     @Override

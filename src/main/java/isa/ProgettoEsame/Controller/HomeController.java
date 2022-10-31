@@ -26,10 +26,20 @@ public class HomeController {
       return "login.html";
     }
 
+    @RequestMapping("/logout.html")
+    public String logout() {
+      return "login.html";
+    }
+
     @RequestMapping("/login-error.html")
     public String loginError(Model model) {
         model.addAttribute("loginError", true);
         return "login.html";
+    }
+
+    @RequestMapping("/index.html")
+    public String index() {
+      return "index.html";
     }
 
     @RequestMapping("/link.html")

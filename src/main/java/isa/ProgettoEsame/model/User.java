@@ -2,12 +2,20 @@ package isa.ProgettoEsame.model;
 
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Users")
@@ -24,6 +32,20 @@ public class User {
     private String role;
     private String username;
     private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable  (name = "usersroles",
+                joinColumns = @JoinColumn(name = "id_user"),
+                inverseJoinColumns = @JoinColumn (name="role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public Set<Role> getRoles(){
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles){
+        this.roles = roles;
+    }
     
     public int getId() {
         return id;

@@ -8,6 +8,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import isa.ProgettoEsame.service.UserDetailsServiceImpl;
+
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
@@ -15,12 +19,26 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Bean
+	public UserDetailsService userDetailsService(){
+		return new UserDetailsServiceImpl();
+	}
+
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider(){
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setPasswordEncoder(getPasswordEncoder());
+		authProvider.setUserDetailsService(userDetailsService);
+		return authProvider;
+	}
+
 	@Autowired
 	UserDetailsService userDetailsService;
 
 	@Override
     protected void configure (AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userDetailsService);
+        auth.authenticationProvider(authenticationProvider());
+
     }
 
 	@Override
@@ -28,8 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	{
     	http
 			.csrf().disable()
-			.authorizeRequests().antMatchers("/login").permitAll()
-								.antMatchers("/index").hasRole("ADMIN")
+			.authorizeRequests()
+								.antMatchers("/link/add", "/link/edit/{id}").hasAuthority("admin")
+								//.antMatchers("/index").hasRole("ADMIN")
 			.anyRequest().authenticated()
 		.and()
         	.formLogin()
@@ -41,6 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       	.and()
        		.logout()
         	.logoutSuccessUrl("/index.html");
+	// se voglio modificare la pagina 403 che viene fuori
+	//	.and()
+	//		.exceptionHandling().accessDeniedPage("/403");
 	}
 
 	@Bean
