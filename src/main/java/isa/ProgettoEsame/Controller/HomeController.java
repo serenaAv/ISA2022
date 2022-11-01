@@ -154,6 +154,14 @@ public class HomeController {
       return "login.html";
     } 
 
+    @RequestMapping(value="/registration",method=RequestMethod.GET)
+    public ModelAndView user_reg(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("user_reg");
+        mav.addObject("user", new User());
+        return mav;
+    }
+
 
     @RequestMapping(value="/user",method=RequestMethod.GET)
     public ModelAndView user(){
@@ -182,6 +190,12 @@ public class HomeController {
     public String saveUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/user";
+    }
+
+    @PostMapping("/saveUser_reg")
+    public String saveUser_reg(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "redirect:/login.html";
     }
 
     @GetMapping("/user/edit/{id}")
