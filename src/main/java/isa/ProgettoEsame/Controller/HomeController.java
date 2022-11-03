@@ -8,12 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import isa.ProgettoEsame.model.*;
 import isa.ProgettoEsame.service.*;
 
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,6 +27,9 @@ public class HomeController {
 
   @Autowired
   private UserService userService;
+
+  @Autowired
+  private TravelService travelService;
 
     /*
      * LOGIN
@@ -214,6 +215,42 @@ public class HomeController {
 
         model.addAttribute("user", user);
         return "user_detail";
+    }
+
+    
+    /*
+     * TRAVEL
+     */
+
+    @RequestMapping(value="/travel",method=RequestMethod.GET)
+    public ModelAndView travel(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("travel");
+        mav.addObject("Listatravel", travelService.getAllTravels());
+        return mav;
+    }
+
+    @RequestMapping(value="/travel/add",method=RequestMethod.GET)
+    public ModelAndView travel_add(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("travel_add");
+        mav.addObject("travel", new Travel());
+        return mav;
+    }
+
+    @PostMapping("/saveTravel")
+    public String saveTravel(@ModelAttribute("travel") Travel travel) {
+        travelService.saveTravel(travel);
+        return "redirect:/travel";
+    }
+
+    @GetMapping("/travel/detail/{id}")
+    public String showFormForDetail_travel(@PathVariable(value = "id") int id, Model model) {
+
+        Travel travel = travelService.getTravelById(id);
+
+        model.addAttribute("travel", travel);
+        return "travel_detail";
     }
     
 }
