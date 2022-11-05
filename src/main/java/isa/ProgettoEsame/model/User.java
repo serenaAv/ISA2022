@@ -18,19 +18,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "firstname")
     private String firstname;
+
+    @Column(name = "lastname")
     private String lastname;
-    private LocalDate datebirth;
+
+    @Column(name = "sex")
     private String sex;
+
+    @Column(name = "role")
     private String role;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -47,7 +60,7 @@ public class User {
         this.roles = roles;
     }
     
-    public int getId() {
+    public Integer getId() {
         return id;
     }
     
@@ -63,10 +76,6 @@ public class User {
         return lastname;
     }
     
-    public LocalDate getDatebirth() {
-        return datebirth;
-    }
-
     public String getSex() {
         return sex;
     }
@@ -83,7 +92,7 @@ public class User {
         return username;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -101,10 +110,6 @@ public class User {
 
     public void setSex(String sex) {
         this.sex= sex;
-    }
-
-    public void setDetebirth(LocalDate datebirth) {
-        this.datebirth= datebirth;
     }
 
     public void setRole(String role) {

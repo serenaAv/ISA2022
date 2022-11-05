@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Aggiungi collegamento</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <hr>
+        <h2>Aggiungi viaggio</h2>
+
+        <form action="#" th:action="@{/saveTravel}" th:object="${travel}" method="POST">
+            <input type="date" th:field="*{date_travel}" placeholder="Data partenza" class="form-control mb-4 col-4">
+
+            <input type="time" th:field="*{time_dep_real}" placeholder="Orario di partenza" class="form-control mb-4 col-4">
+
+            <input type="time" th:field="*{time_arr_real}" placeholder="Orario di arrivo" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{n_pass}" placeholder="Numero di passeggeri" class="form-control mb-4 col-4">
+
+            <button type="submit" class="btn btn-info col-2"> Salva</button>
+        </form>
+
+        <hr>
+
+        <a th:href="@{/}"> Torna alla lista</a>
+    </div>
+</body>
+
+</html>

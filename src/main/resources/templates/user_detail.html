@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>User</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container" >
+        <hr>
+        <h2>Dettaglio utente</h2>
+
+        <form action="#" th:object="${user}" method="POST">
+            <!-- Add hidden form field to handle update -->
+            <label>Username</label>
+            <input type="text" th:field="*{username}" class="form-control mb-4 col-4">
+            <label>Nome</label>
+            <input type="text" th:field="*{firstname}" class="form-control mb-4 col-4">
+            <label>Cognome</label>
+            <input type="text" th:field="*{lastname}" class="form-control mb-4 col-4">
+            <label>Email</label>
+            <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+            <label>Sesso</label>
+            <input type="text" th:field="*{sex}" class="form-control mb-4 col-4">
+            <label>Ruolo</label>
+            <input type="text" th:field="*{role}" class="form-control mb-4 col-4">
+        </form>
+
+        <hr>
+
+        <a th:href="@{/user}"> Torna alla lista</a>
+    </div>
+</body>
+
+</html>

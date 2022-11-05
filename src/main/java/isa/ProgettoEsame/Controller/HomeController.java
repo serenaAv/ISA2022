@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import isa.ProgettoEsame.model.*;
-import isa.ProgettoEsame.service.LinkService;
+import isa.ProgettoEsame.service.*;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -20,6 +21,19 @@ public class HomeController {
 
   @Autowired
   private LinkService linkService;
+  
+  @Autowired
+  private BusService busService;
+
+  @Autowired
+  private UserService userService;
+
+  @Autowired
+  private TravelService travelService;
+
+    /*
+     * LOGIN
+     */
 
     @RequestMapping("/login.html")
     public String login() {
@@ -56,7 +70,12 @@ public class HomeController {
         return mav;
     }
 
-    
+    @GetMapping("/link/delete/{id}")
+    public String deleteLink(@PathVariable(value = "id") int id) {
+
+        this.linkService.deleteLinkById(id);
+        return "redirect:/link";
+    }
 
     @RequestMapping(value="/link/add",method=RequestMethod.GET)
     public ModelAndView link_add(){
@@ -71,30 +90,173 @@ public class HomeController {
         linkService.saveLink(link);
         return "redirect:/link";
     }
-/*
-@RequestMapping(value="/editlink",method= RequestMethod.POST)
-            public ModelAndView do_update(Link n, BindingResult bindingResult){
-            linkService.saveLink(n);
-            return new ModelAndView("redirect:/link");
-        } 
-    @RequestMapping(value="/link/edit/{id}",method=RequestMethod.GET)
-            public ModelAndView updatesLink(@PathVariable Integer id){
-            ModelAndView mav=new ModelAndView();
-            mav.addObject("link", linkService.getLinkById(id));
-            mav.setViewName("link_edit");
-            return mav;
-        }
-        */
 
     @GetMapping("/link/edit/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") int id, Model model) {
+    public String showFormForUpdate_link(@PathVariable(value = "id") int id, Model model) {
 
         Link link = linkService.getLinkById(id);
 
-        // set employee as a model attribute to pre-populate the form
         model.addAttribute("link", link);
         return "link_edit";
     }
-    
 
+    /*
+     * BUS
+     */
+
+    @RequestMapping(value="/bus",method=RequestMethod.GET)
+    public ModelAndView bus(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("bus");
+        mav.addObject("Listabus", busService.getAllBus());
+        return mav;
+    }
+
+
+    @GetMapping("/bus/delete/{id}")
+    public String deleteBus(@PathVariable(value = "id") int id) {
+
+        this.busService.deleteBusById(id);
+        return "redirect:/bus";
+    }
+
+    @RequestMapping(value="/bus/add",method=RequestMethod.GET)
+    public ModelAndView bus_add(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("bus_add");
+        mav.addObject("bus", new Bus());
+        return mav;
+    }
+
+    @PostMapping("/saveBus")
+    public String saveBus(@ModelAttribute("bus") Bus bus) {
+        busService.saveBus(bus);
+        return "redirect:/bus";
+    }
+
+    @GetMapping("/bus/edit/{id}")
+    public String showFormForUpdate_bus(@PathVariable(value = "id") int id, Model model) {
+
+        Bus bus = busService.getBusById(id);
+
+        model.addAttribute("bus", bus);
+        return "bus_edit";
+    }
+
+    @GetMapping("/bus/detail/{id}")
+    public String showFormForDetail_bus(@PathVariable(value = "id") int id, Model model) {
+
+        Bus bus = busService.getBusById(id);
+
+        model.addAttribute("bus", bus);
+        return "bus_detail";
+    }
+    
+    /*
+     * USER
+     */
+
+    @RequestMapping("/logout.html")
+    public String logout() {
+      return "login.html";
+    } 
+
+    @RequestMapping(value="/registration",method=RequestMethod.GET)
+    public ModelAndView user_reg(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("user_reg");
+        mav.addObject("user", new User());
+        return mav;
+    }
+
+
+    @RequestMapping(value="/user",method=RequestMethod.GET)
+    public ModelAndView user(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("user");
+        mav.addObject("Listauser", userService.getAllUser());
+        return mav;
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable(value = "id") int id) {
+
+        this.userService.deleteUserById(id);
+        return "redirect:/user";
+    }
+
+    @RequestMapping(value="/user/add",method=RequestMethod.GET)
+    public ModelAndView user_add(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("user_add");
+        mav.addObject("user", new User());
+        return mav;
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "redirect:/user";
+    }
+
+    @PostMapping("/saveUser_reg")
+    public String saveUser_reg(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "redirect:/login.html";
+    }
+
+    @GetMapping("/user/edit/{id}")
+    public String showFormForUpdate_user(@PathVariable(value = "id") int id, Model model) {
+
+        User user = userService.getUserById(id);
+
+        model.addAttribute("user", user);
+        return "user_edit";
+    }
+
+    @GetMapping("/user/detail/{id}")
+    public String showFormForDetail_user(@PathVariable(value = "id") int id, Model model) {
+
+        User user = userService.getUserById(id);
+
+        model.addAttribute("user", user);
+        return "user_detail";
+    }
+
+    
+    /*
+     * TRAVEL
+     */
+
+    @RequestMapping(value="/travel",method=RequestMethod.GET)
+    public ModelAndView travel(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("travel");
+        mav.addObject("Listatravel", travelService.getAllTravels());
+        return mav;
+    }
+
+    @RequestMapping(value="/travel/add",method=RequestMethod.GET)
+    public ModelAndView travel_add(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("travel_add");
+        mav.addObject("travel", new Travel());
+        return mav;
+    }
+
+    @PostMapping("/saveTravel")
+    public String saveTravel(@ModelAttribute("travel") Travel travel) {
+        travelService.saveTravel(travel);
+        return "redirect:/travel";
+    }
+
+    @GetMapping("/travel/detail/{id}")
+    public String showFormForDetail_travel(@PathVariable(value = "id") int id, Model model) {
+
+        Travel travel = travelService.getTravelById(id);
+
+        model.addAttribute("travel", travel);
+        return "travel_detail";
+    }
+    
 }

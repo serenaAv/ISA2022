@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>User</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+    .topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+</style>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/" >Home</a>
+        <a href="/travel" class="active" id="b">Viaggi</a>
+        <a href="/user"  id="c">Utenti registrati</a>
+        <a href="/bus"  id="e">Autobus</a>
+        <a href="/link" >Collegamenti disponibili</a>
+    </div>
+    <br><br>
+    <div class="container sm-3">
+        <h2>Lista viaggi effettuati</h2>
+
+        <a th:href="@{/travel/add}" class="btn btn-success btn-sm mb-3"> Aggiungi </a>
+
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>ID Viaggio</th>
+                    <th>Data del viaggio</th>
+                    <th>Ora di partenza</th>
+                    <th>Ora di arrivo</th>
+                    <th>Azioni </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="travel : ${Listatravel}">
+                    <td th:text="${travel.id}"></td>
+                    <td th:text="${travel.date_travel}"></td>
+                    <td th:text="${travel.time_dep_real}"></td>
+                    <td th:text="${travel.time_arr_real}"></td>
+                    <td> <a th:href="@{travel/detail/{id}(id=${travel.id})}" class="btn btn-info btn-sm mb-3">Dettagli</a> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
