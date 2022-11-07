@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>Bus</title>
+    <title>Prenotazioni</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <style>
@@ -37,38 +37,40 @@
         <a href="/" >Home</a>
         <a href="/travel" id="b">Viaggi</a>
         <a href="/user" id="c">Utenti registrati</a>
-        <a href="/bus" class="active" id="e">Autobus</a>
+        <a href="/bus"  id="e">Autobus</a>
         <a href="/link" >Collegamenti disponibili</a>
-        <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
+        <a href="/book"  class="active" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
             <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
             <a href="/myProfile" >Mio profilo</a>
             <a href="/logout" th:action="@{/logout}">Logout</a>
     </div>
     <br><br>
     <div class="container sm-3">
-        <h2>Lista bus</h2>
+        <h2>Lista prenotazioni</h2>
 
-        <a th:href="@{/bus/add}" class="btn btn-success btn-sm mb-3"> Aggiungi </a>
+        <a th:href="@{/book/add}" class="btn btn-success btn-sm mb-3"> Aggiungi </a>
 
         <table border="1" class="table table-striped table-responsive-md">
             <thead>
                 <tr>
-                    <th>ID Bus</th>
-                    <th>Targa</th>
-                    <th>Immatricolazione </th>
-                    <th>Ultima revisione </th>
+                    <th>ID Prenotazione</th>
+                    <th>Data</th>
+                    <th>Descrizione </th>
+                    <th>Data viaggio</th>
+                    <th>Username Utente</th>
                     <th>Azioni </th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="bus : ${Listabus}">
-                    <td th:text="${bus.id}"></td>
-                    <td th:text="${bus.plate}"></td>
-                    <td th:text="${bus.y}"></td>
-                    <td th:text="${bus.date_last_rev}"></td>
-                    <td> <a th:href="@{bus/detail/{id}(id=${bus.id})}" class="btn btn-info btn-sm mb-3">Dettagli</a> 
-                        <a th:href="@{bus/edit/{id}(id=${bus.id})}" class="btn btn-primary btn-sm mb-3">Aggiorna</a>
-                        <a th:href="@{/bus/delete/{id}(id=${bus.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>
+                <tr th:each="book : ${Listabook}">
+                    <td th:text="${book.id}"></td>
+                    <td th:text="${book.date_book}"></td>
+                    <td th:text="${book.description}"></td>
+                    <td th:text="${book.travel.date_travel}"></td>
+                    <td th:text="${book.user.username}"></td>
+                    <td> 
+                        <a th:href="@{book/edit/{id}(id=${book.id})}" class="btn btn-primary btn-sm mb-3">Modifica</a>
+                        <a th:href="@{/book/delete/{id}(id=${book.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>
                     </td>
                 </tr>
             </tbody>

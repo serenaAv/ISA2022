@@ -1,7 +1,6 @@
 package isa.ProgettoEsame.model;
 
 
-import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,9 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,9 +37,6 @@ public class User {
 
     @Column(name = "sex")
     private String sex;
-
-    @Column(name = "role")
-    private String role;
 
     @Column(name = "username")
     private String username;
@@ -97,10 +94,6 @@ public class User {
         return sex;
     }
 
-    public String getRole() {
-        return role;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -128,16 +121,21 @@ public class User {
     public void setSex(String sex) {
         this.sex= sex;
     }
-
-    public void setRole(String role) {
-        this.role= role;
-    }
-
+    
     public void setPassword(String password) {
         this.password= password;
     }
 
     public void setUsername(String username) {
         this.username= username;
+    }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> book;
+    public List<Book> getBooks(){
+        return book;
+    }
+    public void setBooks(List<Book> books){
+        this.book = books;
     }
 }

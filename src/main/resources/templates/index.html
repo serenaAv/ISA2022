@@ -43,7 +43,9 @@ table{
             <a href="/travel" id="b">Viaggi</a>
             <a href="/user" id="c">Utenti registrati</a>
             <a href="/bus" id="e">Autobus</a>
-            <a href="/link">Collegamenti disponibili</a>
+            <a href="/link">Collegamenti disponibili</a>            
+            <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
+            <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
             <a href="/myProfile" >Mio profilo</a>
             <a href="/logout" th:action="@{/logout}">Logout</a>
         </div>

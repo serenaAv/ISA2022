@@ -40,7 +40,9 @@
         <a href="/user" id="c">Utenti registrati</a>
         <a href="/bus"  id="e">Autobus</a>
         <a href="/link" >Collegamenti disponibili</a>
-        <a href="/myProfile" class="active">Mio profilo</a>
+        <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
+        <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
+        <a href="/myProfile" class="active" >Mio profilo</a>
         <a href="/logout" th:action="@{/logout}">Logout</a>
     </div>
     <br><br>
@@ -61,35 +63,6 @@
             <label>Email</label>
             <input type="text" th:value="${user.email}" class="form-control mb-4 col-4">
         </form>
-<!--        <table>
-            <tr>
-                <td>Username:</td>
-                <td sec:authentication="name">Username</td>
-            </tr>
-            <tr>
-                <td>Firstname:</td>
-                <td sec:authentication="principal.Firstname">Firstname</td>
-            </tr>
-            <tr>
-                <td>Lastname:</td>
-                <td sec:authentication="principal.Lastname">Lastname</td>
-            </tr>
-            <tr>
-                <td>Sex:</td>
-                <td sec:authentication="principal.Sex">Sex</td>
-            </tr>
-            <tr>
-                <td>Role:</td>
-                <td sec:authentication="principal.authorities">Roles</td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td sec:authentication="principal.Email">Email</td>
-            </tr>
-        </table>
-    
-        <a th:href="@{/home}"> Torna alla home</a>
--->
     </div>
 </body>
 
