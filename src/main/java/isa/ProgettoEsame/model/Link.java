@@ -1,10 +1,15 @@
 package isa.ProgettoEsame.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -42,4 +47,19 @@ public class Link {
     public void setTime(String time) {
         this.time = time;
     }
+
+
+
+
+
+
+    @OneToMany(mappedBy = "link", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Travel> travels;
+    public List<Travel> getTravels(){
+        return travels;
+    }
+    public void setTravels(List<Travel> travels){
+        this.travels = travels;
+    }
+
 }

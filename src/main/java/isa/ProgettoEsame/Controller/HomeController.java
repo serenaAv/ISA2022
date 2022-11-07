@@ -220,26 +220,12 @@ public class HomeController {
         return "user_detail";
     }
 
-
-
-
-
-
     @GetMapping("/myProfile")
     public String UserProfile(@AuthenticationPrincipal MyUserDetails user, Model model) {
         model.addAttribute("user", user);
         return "myProfile";
     }
-
-
-
-
-
-
-
-
-
-    
+  
     /*
      * TRAVEL
      */

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,11 +29,39 @@ public class Travel {
     @Column(name = "n_pass")
     private Integer n_pass;
 
-    @Column(name = "id_bus")
-    private Integer id_bus;
 
-    @Column(name = "id_link")
-    private Integer id_link;
+
+
+
+
+
+    
+
+    @ManyToOne
+    @JoinColumn(name = "id_bus")
+    private Bus bus;
+
+    public Bus getBus(){
+        return bus;
+    }
+    public void setBus(Bus bus){
+        this.bus = bus;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="id_link")
+    private Link link;
+    public Link getLink(){
+        return link;
+    }
+    public void setLink(Link link){
+        this.link = link;
+    }
+
+
+
+
+
 
     public Integer getId() {
         return id;
@@ -66,20 +96,6 @@ public class Travel {
     }
     public void setN_pass(Integer n_pass) {
         this.n_pass = n_pass;
-    }
-
-    public Integer getId_bus() {
-        return id_bus;
-    }
-    public void setId_bus(Integer id_bus) {
-        this.id_bus = id_bus;
-    }
-
-    public Integer getId_link() {
-        return id_link;
-    }
-    public void setId_link(Integer id_link) {
-        this.id_link = id_link;
     }
 
 

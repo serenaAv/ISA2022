@@ -55,6 +55,8 @@
                     <th>Data del viaggio</th>
                     <th>Ora di partenza</th>
                     <th>Ora di arrivo</th>
+                    <th>Bus utilizzato</th>
+                    <th>Destinazione</th>
                     <th>Azioni </th>
                 </tr>
             </thead>
@@ -64,6 +66,8 @@
                     <td th:text="${travel.date_travel}"></td>
                     <td th:text="${travel.time_dep_real}"></td>
                     <td th:text="${travel.time_arr_real}"></td>
+                    <td th:text="${travel.bus.plate}"></td>
+                    <td th:text="${travel.link.destination}"></td>
                     <td> <a th:href="@{travel/detail/{id}(id=${travel.id})}" class="btn btn-info btn-sm mb-3">Dettagli</a> 
                     </td>
                 </tr>

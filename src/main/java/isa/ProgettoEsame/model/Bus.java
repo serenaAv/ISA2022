@@ -1,13 +1,18 @@
 package isa.ProgettoEsame.model;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import isa.ProgettoEsame.model.Travel;
 
 @Entity
 @Table(name = "bus")
@@ -32,6 +37,19 @@ public class Bus {
     @Column(name = "date_last_carserv")
     private String date_last_carserv;
     
+
+
+    @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Travel> travels;
+    public List<Travel> getTravels(){
+        return travels;
+    }
+    public void setTravels(List<Travel> travels){
+        this.travels = travels;
+    }
+
+
+
 
     public Integer getId() {
         return id;
