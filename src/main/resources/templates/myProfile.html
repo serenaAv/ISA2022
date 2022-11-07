@@ -1,41 +1,96 @@
-Mio profilo
-<!--
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf/-extras-springsecurity5">
 
 <head>
     <meta charset="ISO-8859-1">
     <title>Mio profilo</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .topnav a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    </style>
+
 </head>
 
 <body>
-    <div class="container" >
-        <hr>
-        <h2>Mio profilo</h2>
+    <div class="topnav">
+        <a href="/" >Home</a>
+        <a href="/travel" id="b">Viaggi</a>
+        <a href="/user" id="c">Utenti registrati</a>
+        <a href="/bus"  id="e">Autobus</a>
+        <a href="/link" >Collegamenti disponibili</a>
+        <a href="/myProfile" class="active">Mio profilo</a>
+        <a href="/logout" th:action="@{/logout}">Logout</a>
+    </div>
+    <br><br>
 
-        <form action="#" th:object="${user}" method="POST">
-            <!-- Add hidden form field to handle update -->
-            <label>Username</label>
-            <input type="text" th:field="*{username}" class="form-control mb-4 col-4">
-            <label>Nome</label>
-            <input type="text" th:field="*{firstname}" class="form-control mb-4 col-4">
-            <label>Cognome</label>
-            <input type="text" th:field="*{lastname}" class="form-control mb-4 col-4">
+    <div class="container">
+        <h2>Dettaglio utente</h2>
+        <form>
+            <label>Name</label>
+            <input type="text" th:value="${user.username}" class="form-control mb-4 col-4">
+            <label>Firstname</label>
+            <input type="text" th:value="${user.firstname}" class="form-control mb-4 col-4">
+            <label>Lastname</label>
+            <input type="text" th:value="${user.lastname}" class="form-control mb-4 col-4">
+            <label>Sex</label>
+            <input type="text" th:value="${user.sex}" class="form-control mb-4 col-4">
+            <label>Role</label>
+            <input type="text" th:value="${user.authorities}" class="form-control mb-4 col-4" readonly>
             <label>Email</label>
-            <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
-            <label>Sesso</label>
-            <input type="text" th:field="*{sex}" class="form-control mb-4 col-4">
-            <label>Ruolo</label>
-            <input type="text" th:field="*{role}" class="form-control mb-4 col-4">
+            <input type="text" th:value="${user.email}" class="form-control mb-4 col-4">
         </form>
-
-        <hr>
-
+<!--        <table>
+            <tr>
+                <td>Username:</td>
+                <td sec:authentication="name">Username</td>
+            </tr>
+            <tr>
+                <td>Firstname:</td>
+                <td sec:authentication="principal.Firstname">Firstname</td>
+            </tr>
+            <tr>
+                <td>Lastname:</td>
+                <td sec:authentication="principal.Lastname">Lastname</td>
+            </tr>
+            <tr>
+                <td>Sex:</td>
+                <td sec:authentication="principal.Sex">Sex</td>
+            </tr>
+            <tr>
+                <td>Role:</td>
+                <td sec:authentication="principal.authorities">Roles</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td sec:authentication="principal.Email">Email</td>
+            </tr>
+        </table>
+    
         <a th:href="@{/home}"> Torna alla home</a>
+-->
     </div>
 </body>
 
 </html>
--->

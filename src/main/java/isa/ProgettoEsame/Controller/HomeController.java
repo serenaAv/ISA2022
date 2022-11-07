@@ -14,6 +14,7 @@ import isa.ProgettoEsame.service.*;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 
 @Controller
@@ -44,6 +45,7 @@ public class HomeController {
     public String logout() {
       return "login.html";
     }
+
 
     @RequestMapping("/login-error.html")
     public String loginError(Model model) {
@@ -217,6 +219,25 @@ public class HomeController {
         model.addAttribute("user", user);
         return "user_detail";
     }
+
+
+
+
+
+
+    @GetMapping("/myProfile")
+    public String UserProfile(@AuthenticationPrincipal MyUserDetails user, Model model) {
+        model.addAttribute("user", user);
+        return "myProfile";
+    }
+
+
+
+
+
+
+
+
 
     
     /*

@@ -50,9 +50,6 @@ table{
         <br>
         <h1 th:inline="text" textalign="center">Welcome [[${#httpServletRequest.remoteUser}]]</h1>
                    <!--Mi permette di mostrare il ruolo di chi si logga: <span sec:authentication="principal.authorities">Roles</span>-->
-                   <form th:action="@{/logout}" method = "post">
-                        <input type ="submit" value ="Logout"/>
-                   </form> 
                    
                    <text>Al momento ti trovi nella Home che può darti accesso a:</text>
                     <ul>

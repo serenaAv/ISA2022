@@ -59,5 +59,28 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getEmail() {
+        return this.user.getEmail();
+    }
  
+    public String getFirstname() {
+        return this.user.getFirstname();
+    }
+
+    public String getLastname() {
+        return this.user.getLastname();
+    }
+
+    public String getSex() {
+        return this.user.getSex();
+    }
+
+    public int getId(){
+        return this.user.getId();
+    }
+
+    public String getRole() {
+        return this.user.getRole();
+    }
 }
