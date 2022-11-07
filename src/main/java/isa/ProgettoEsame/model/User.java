@@ -60,6 +60,22 @@ public class User {
     public void setRoles(Set<Role> roles){
         this.roles = roles;
     }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable  (name = "books",
+                joinColumns = @JoinColumn(name = "id_user"),
+                inverseJoinColumns = @JoinColumn (name="id_trav"))
+    private Set<Travel> travels = new HashSet<>();
+
+    public Set<Travel> getTravels(){
+        return travels;
+    }
+
+    public void setTravels(Set<Travel> travels){
+        this.travels = travels;
+    }
+
+    
     
     public Integer getId() {
         return id;
