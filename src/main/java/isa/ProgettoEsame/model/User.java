@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "users")
@@ -27,9 +28,13 @@ public class User {
     private Integer id;
 
     @Column(name = "email")
+    @Email(message = "Inserire una mail valida")
+    @Size(max=60, message = "Inserire una mail valida")
     private String email;
 
     @Column(name = "firstname")
+    @NotBlank
+    @Size(max = 45)
     private String firstname;
 
     @Column(name = "lastname")

@@ -20,6 +20,7 @@
             <input type="text" th:field="*{firstname}" placeholder="Nome" class="form-control mb-4 col-4">
 
             <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
 
             <label>Sesso</label>
                 <select th:field="*{sex}" id="dd1">

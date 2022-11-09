@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.stereotype.Controller;
 import isa.ProgettoEsame.model.*;
 import isa.ProgettoEsame.service.*;
 
+import javax.validation.Valid;
+import org.springframework.validation.Errors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -191,9 +195,14 @@ public class HomeController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
-        return "redirect:/user";
+    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult  bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "user_add"; 
+        }
+        else{
+            userService.saveUser(user);
+            return "redirect:/user";
+        }
     }
 
     @PostMapping("/saveUser_reg")
@@ -206,7 +215,6 @@ public class HomeController {
     public String showFormForUpdate_user(@PathVariable(value = "id") int id, Model model) {
 
         User user = userService.getUserById(id);
-
         model.addAttribute("user", user);
         return "user_edit";
     }
