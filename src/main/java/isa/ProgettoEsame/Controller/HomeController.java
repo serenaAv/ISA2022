@@ -285,11 +285,21 @@ public class HomeController {
         return mav;
     }
 
+    @RequestMapping(value="/myBook",method=RequestMethod.GET)
+    public ModelAndView myBook(){
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("myBook");
+        mav.addObject("Listatravel",travelService.getAllTravels());
+        mav.addObject("Listabook", bookService.getAllBooks());
+        return mav;
+    }
+
     @RequestMapping(value="/book/add",method=RequestMethod.GET)
     public ModelAndView book_add(){
         ModelAndView mav=new ModelAndView();
         mav.setViewName("book_add");
-        mav.addObject("travel", new Travel());
+        mav.addObject("Listatravel",travelService.getAllTravels());
+        mav.addObject("book", new Book());
         return mav;
     }
 
@@ -297,6 +307,12 @@ public class HomeController {
     public String saveBook(@ModelAttribute("book") Book book) {
         bookService.saveBook(book);
         return "redirect:/book";
+    }
+
+    @PostMapping("/saveMyBook")
+    public String saveMyBook(@ModelAttribute("book") Book book) {
+        bookService.saveBook(book);
+        return "redirect:/myBook";
     }
 
     @GetMapping("/book/delete/{id}")

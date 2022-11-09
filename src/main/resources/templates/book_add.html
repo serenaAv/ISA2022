@@ -1,1 +1,61 @@
-add
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Aggiungi prenotazione</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <hr>
+        <h2>Viaggi disponibili</h2>
+
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>ID Viaggio</th>
+                    <th>Data del viaggio</th>
+                    <th>Ora di partenza</th>
+                    <th>Ora di arrivo</th>
+                    <th>Bus utilizzato</th>
+                    <th>Destinazione</th>
+                    <th>Azioni </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="travel : ${Listatravel}">
+                    <td th:text="${travel.id}"></td>
+                    <td th:text="${travel.date_travel}"></td>
+                    <td th:text="${travel.time_dep_real}"></td>
+                    <td th:text="${travel.time_arr_real}"></td>
+                    <td th:text="${travel.bus.plate}"></td>
+                    <td th:text="${travel.link.destination}"></td>
+                    <td> <a th:href="@{travel/detail/{id}(id=${travel.id})}" class="btn btn-info btn-sm mb-3">Dettagli</a> 
+                        <a th:href="@{/travel/delete/{id}(id=${travel.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <div class="col-12 col-lg-9 col-xl-7">
+        <h2>Aggiungi prenotazione</h2>
+
+        <form action="#" th:action="@{/saveMyBook}" th:object="${book}" method="POST">
+
+            <input type="date" th:field="*{date_book}" placeholder="Data Prenotazione" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
+
+            <button type="submit" class="btn btn-info col-2"> Salva</button>
+        </form>
+        </div>
+
+        <hr>
+
+        <a th:href="@{/myBook}"> Torna alla lista</a>
+    </div>
+</body>
+
+</html>

@@ -46,6 +46,7 @@ public class Book {
         this.date_book = date_book;
     }
 
+
     @ManyToOne
     @JoinColumn(name="id_trav")
     private Travel travel;
