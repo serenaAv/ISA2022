@@ -39,6 +39,8 @@
         <a href="/user" class="active" id="c">Utenti registrati</a>
         <a href="/bus"  id="e">Autobus</a>
         <a href="/link" >Collegamenti disponibili</a>
+        <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
+        <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
         <a href="/myProfile" >Mio profilo</a>
         <a href="/logout" th:action="@{/logout}">Logout</a>
     </div>
@@ -55,7 +57,6 @@
                     <th>Username</th>
                     <th>Cognome</th>
                     <th>Sesso</th>
-                    <th>Ruolo </th>
                     <th>Azioni </th>
                 </tr>
             </thead>
@@ -65,7 +66,6 @@
                     <td th:text="${us.username}"></td>
                     <td th:text="${us.lastname}"></td>
                     <td th:text="${us.sex}"></td>
-                    <td th:text="${us.role}"></td>
                     <td> <a th:href="@{user/detail/{id}(id=${us.id})}" class="btn btn-info btn-sm mb-3">Dettagli</a> 
                         <a th:href="@{user/edit/{id}(id=${us.id})}" class="btn btn-primary btn-sm mb-3">Aggiorna</a>
                         <a th:href="@{/user/delete/{id}(id=${us.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>

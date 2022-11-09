@@ -1,54 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>User</title>
-
+    <title>Aggiungi prenotazione</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<style>
-    .topnav {
-    overflow: hidden;
-    background-color: #333;
-}
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-.topnav a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-</style>
 </head>
 
 <body>
-    <div class="topnav">
-        <a href="/" >Home</a>
-        <a href="/travel" class="active" id="b">Viaggi</a>
-        <a href="/user"  id="c">Utenti registrati</a>
-        <a href="/bus"  id="e">Autobus</a>
-        <a href="/link" >Collegamenti disponibili</a>
-        <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
-        <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
-        <a href="/myProfile" >Mio profilo</a>
-        <a href="/logout" th:action="@{/logout}">Logout</a>
-    </div>
-    <br><br>
-    <div class="container sm-3">
-        <h2>Lista viaggi effettuati</h2>
-
-        <a th:href="@{/travel/add}" class="btn btn-success btn-sm mb-3" > Aggiungi </a>
+    <div class="container">
+        <hr>
+        <h2>Viaggi disponibili</h2>
 
         <table border="1" class="table table-striped table-responsive-md">
             <thead>
@@ -76,6 +38,23 @@
                 </tr>
             </tbody>
         </table>
+        <hr>
+        <div class="col-12 col-lg-9 col-xl-7">
+        <h2>Aggiungi prenotazione</h2>
+
+        <form action="#" th:action="@{/saveMyBook}" th:object="${book}" method="POST">
+
+            <input type="date" th:field="*{date_book}" placeholder="Data Prenotazione" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
+
+            <button type="submit" class="btn btn-info col-2"> Salva</button>
+        </form>
+        </div>
+
+        <hr>
+
+        <a th:href="@{/myBook}"> Torna alla lista</a>
     </div>
 </body>
 

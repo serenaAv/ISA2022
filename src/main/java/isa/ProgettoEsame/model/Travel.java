@@ -1,8 +1,10 @@
 package isa.ProgettoEsame.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "travels")
@@ -72,6 +76,16 @@ public class Travel {
         this.users = users;
     }
 
+    @OneToMany(mappedBy = "travel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Book> book;
+    public List<Book> getBooks(){
+        return book;
+    }
+    public void setBooks(List<Book> books){
+        this.book = books;
+    }
+
+    
 
 
 
