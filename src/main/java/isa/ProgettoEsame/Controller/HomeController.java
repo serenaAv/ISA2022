@@ -97,9 +97,13 @@ public class HomeController {
     }
 
     @PostMapping("/saveLink")
-    public String saveLink(@ModelAttribute("link") Link link) {
+    public String saveLink(@Valid @ModelAttribute("link") Link link, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "link_add"; 
+        } else {
         linkService.saveLink(link);
         return "redirect:/link";
+        }
     }
 
     @GetMapping("/link/edit/{id}")
@@ -140,9 +144,13 @@ public class HomeController {
     }
 
     @PostMapping("/saveBus")
-    public String saveBus(@ModelAttribute("bus") Bus bus) {
+    public String saveBus(@Valid @ModelAttribute("bus") Bus bus, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "bus_add"; 
+        } else {
         busService.saveBus(bus);
         return "redirect:/bus";
+        }
     }
 
     @GetMapping("/bus/edit/{id}")
@@ -211,9 +219,13 @@ public class HomeController {
     }
 
     @PostMapping("/saveUser_reg")
-    public String saveUser_reg(@ModelAttribute("user") User user) {
-        userService.saveUser(user);
+    public String saveUser_reg(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "user_reg"; 
+        } else {
+            userService.saveUser(user);
         return "redirect:/login.html";
+        }
     }
 
     @GetMapping("/user/edit/{id}")
@@ -260,9 +272,13 @@ public class HomeController {
     }
 
     @PostMapping("/saveTravel")
-    public String saveTravel(@ModelAttribute("travel") Travel travel) {
+    public String saveTravel(@Valid @ModelAttribute("travel") Travel travel, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "travel_add"; 
+        } else {
         travelService.saveTravel(travel);
         return "redirect:/travel";
+        }
     }
 
     @GetMapping("/travel/detail/{id}")

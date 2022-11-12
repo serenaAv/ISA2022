@@ -29,6 +29,7 @@
 
                   <div class="form-outline">
                     <input type="text" th:field="*{firstname}"class="form-control form-control-lg" />
+                    <span class="alert alert-danger" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">username error</span>
                     <label class="form-label" >Nome</label>
                   </div>
 
@@ -37,6 +38,7 @@
 
                   <div class="form-outline">
                     <input type="text" th:field="*{lastname}" class="form-control form-control-lg" />
+                    <span class="alert alert-danger" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">lastname error</span>
                     <label class="form-label" >Cognome</label>
                   </div>
 
@@ -48,6 +50,7 @@
 
                   <div class="form-outline">
                     <input type="text" th:field="*{username}"class="form-control form-control-lg" />
+                    <span class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>
                     <label class="form-label" >Username</label>
                   </div>
 
@@ -57,6 +60,7 @@
                   <div class="form-outline">
                     <label class="form-label" >Email</label>
                     <input type="text" th:field="*{email}" class="form-control form-control-lg" />
+                    <span class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
                   </div>
 
                 </div>
@@ -66,6 +70,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="form-outline">
                         <input type="text" th:field="*{password}" class="form-control form-control-lg" />
+                        <span class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
                         <label class="form-label" >Passowrd</label>
                       </div>
                     

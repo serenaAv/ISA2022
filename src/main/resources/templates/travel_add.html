@@ -14,12 +14,14 @@
 
         <form action="#" th:action="@{/saveTravel}" th:object="${travel}" method="POST">
             <input type="date" th:field="*{date_travel}" placeholder="Data partenza" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('date_travel')}" th:errors="*{date_travel}">username error</span>
 
             <input type="time" th:field="*{time_dep_real}" placeholder="Orario di partenza" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('time_dep_real')}" th:errors="*{time_dep_real}">username error</span>
 
             <input type="time" th:field="*{time_arr_real}" placeholder="Orario di arrivo" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('time_arr_real')}" th:errors="*{time_arr_real}">username error</span>
 
-            <input type="text" th:field="*{n_pass}" placeholder="Numero di passeggeri" class="form-control mb-4 col-4">
 
             <button type="submit" class="btn btn-info col-2"> Salva</button>
         </form>

@@ -14,13 +14,16 @@
 
         <form action="#" th:action="@{/saveUser}" th:object="${user}" method="POST">
             <input type="text" th:field="*{username}" placeholder="Username" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>
 
             <input type="text" th:field="*{lastname}" placeholder="Cognome" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">lastaname error</span>
 
             <input type="text" th:field="*{firstname}" placeholder="Nome" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">firstname error</span>
 
             <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('email')}" cssClass="error" th:errors="*{email}">email error</span>
 
             <label>Sesso</label>
                 <select th:field="*{sex}" id="dd1">
@@ -29,6 +32,7 @@
                 </select>
 
             <input type="password" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">firstname error</span>
             
 
             <button type="submit" class="btn btn-info col-2"> Salva</button>
