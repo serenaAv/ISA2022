@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf/-extras-springsecurity5">
 
 <head>
     <meta charset="ISO-8859-1">
@@ -45,7 +45,7 @@
             <form action="#" th:action="@{/saveMyBook}" th:object="${book}" method="POST">
 
             <!--Devo mettere la data odierna di default e non farla modificare-->
-                <input type="date" th:field="*{date_book}" placeholder="Data Prenotazione" class="form-control mb-4 col-4">
+                <input type="date" th:field="*{date_book}" class="form-control mb-4 col-4">
 
                 <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
 
@@ -58,23 +58,30 @@
                     </th:block>
                 </select>
                 
-            <!--    <input type="text" th:value="${user.id}" class="form-control mb-4 col-4">-->
-            <!-- Come posso metterlo al posto di una select?-->
-            <!-- Devo trovare come mettere lo username di default se sono un utente user-->
-            <select th:field="*{user}" class="form-control mb-4 col-4">
+
+            <select sec:authorize="hasAuthority('admin')" th:field="*{user}" class="form-control mb-4 col-4">
                 <th:block th:each="user : ${Listauser}">
                     <option th:text="${user.id}" th:value="${user.id}"/>                       
                 </th:block>
             </select>
 
-                <button type="submit" class="btn btn-info col-2"> Salva</button>
-            </form>
+            <select sec:authorize="hasAuthority('user')" th:field="*{user}" class="form-control mb-4 col-4">
+                <th:block th:each="user : ${meUser}">
+                    <option th:text="${meUser.id}" th:value="${meUser.id}"/>                       
+                </th:block>
+            </select>
+
+
+
+        <button type="submit" class="btn btn-info col-2"> Salva</button>
+        </form>
         </div>
 
         <hr>
 
         <a th:href="@{/myBook}"> Torna alla lista</a>
     </div>
+
 </body>
 
 </html>

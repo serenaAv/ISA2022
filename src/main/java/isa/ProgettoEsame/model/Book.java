@@ -74,16 +74,7 @@ public class Book {
     }
     */
 
-    @ManyToOne
-    @JoinColumn(name="id_trav")
-    private Travel travel;
-    public Travel getTravel(){
-        return travel;
-    }
-    public void setTravel(Travel travel){
-        this.travel = travel;
-    }
-
+    
 
     @ManyToOne
     @JoinColumn(name="id_user")
@@ -94,6 +85,17 @@ public class Book {
     public void setUser(User user){
         this.user = user;
     }
+
+    @ManyToOne
+    @JoinColumn(name="id_trav")
+    private Travel travel;
+    public Travel getTravel(){
+        return travel;
+    }
+    public void setTravel(Travel travel){
+        this.travel = travel;
+    }
+
 
 
 }

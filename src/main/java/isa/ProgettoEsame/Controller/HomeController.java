@@ -289,7 +289,9 @@ public class HomeController {
     public ModelAndView book(){
         ModelAndView mav=new ModelAndView();
         mav.setViewName("book");
+        mav.addObject("Listatravel",travelService.getAllTravels());
         mav.addObject("Listabook", bookService.getAllBooks());
+        mav.addObject("Listauser", userService.getAllUser());
         return mav;
     }
 
@@ -299,17 +301,18 @@ public class HomeController {
         mav.setViewName("myBook");
         mav.addObject("Listatravel",travelService.getAllTravels());
         mav.addObject("Listabook", bookService.getAllBooks());
+        mav.addObject("Listauser", userService.getAllUser());
         return mav;
     }
 
     @RequestMapping(value="/book/add",method=RequestMethod.GET)
-    public ModelAndView book_add(){
+    public ModelAndView book_add(@AuthenticationPrincipal MyUserDetails meUser){
         ModelAndView mav=new ModelAndView();
         mav.setViewName("book_add");
         mav.addObject("book", new Book());
         mav.addObject("Listatravel",travelService.getAllTravels());
         mav.addObject("Listauser", userService.getAllUser());
-    
+        mav.addObject("meUser", meUser);
         return mav;
     }
 
