@@ -306,8 +306,10 @@ public class HomeController {
     public ModelAndView book_add(){
         ModelAndView mav=new ModelAndView();
         mav.setViewName("book_add");
-        mav.addObject("Listatravel",travelService.getAllTravels());
         mav.addObject("book", new Book());
+        mav.addObject("Listatravel",travelService.getAllTravels());
+        mav.addObject("Listauser", userService.getAllUser());
+    
         return mav;
     }
 

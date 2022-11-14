@@ -40,16 +40,35 @@
         </table>
         <hr>
         <div class="col-12 col-lg-9 col-xl-7">
-        <h2>Aggiungi prenotazione</h2>
+            <h2>Aggiungi prenotazione</h2>
 
-        <form action="#" th:action="@{/saveMyBook}" th:object="${book}" method="POST">
+            <form action="#" th:action="@{/saveMyBook}" th:object="${book}" method="POST">
 
-            <input type="date" th:field="*{date_book}" placeholder="Data Prenotazione" class="form-control mb-4 col-4">
+            <!--Devo mettere la data odierna di default e non farla modificare-->
+                <input type="date" th:field="*{date_book}" placeholder="Data Prenotazione" class="form-control mb-4 col-4">
 
-            <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
+                <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
 
-            <button type="submit" class="btn btn-info col-2"> Salva</button>
-        </form>
+            <!--    <input type="text" th:field="*{id_trav}" placeholder="Id Destinazione" class="form-control mb-4 col-4">-->
+
+
+                <select th:field="*{travel}" class="form-control mb-4 col-4">
+                    <th:block th:each="travel : ${Listatravel}">
+                        <option th:text="${travel.link.destination}" th:value="${travel.id}"/>                       
+                    </th:block>
+                </select>
+                
+            <!--    <input type="text" th:value="${user.id}" class="form-control mb-4 col-4">-->
+            <!-- Come posso metterlo al posto di una select?-->
+            <!-- Devo trovare come mettere lo username di default se sono un utente user-->
+            <select th:field="*{user}" class="form-control mb-4 col-4">
+                <th:block th:each="user : ${Listauser}">
+                    <option th:text="${user.id}" th:value="${user.id}"/>                       
+                </th:block>
+            </select>
+
+                <button type="submit" class="btn btn-info col-2"> Salva</button>
+            </form>
         </div>
 
         <hr>

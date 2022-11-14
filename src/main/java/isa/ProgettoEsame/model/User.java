@@ -63,7 +63,7 @@ public class User {
         this.roles = roles;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+/*    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable  (name = "books",
                 joinColumns = @JoinColumn(name = "id_user"),
                 inverseJoinColumns = @JoinColumn (name="id_trav"))
@@ -76,7 +76,7 @@ public class User {
     public void setTravels(Set<Travel> travels){
         this.travels = travels;
     }
-
+*/
     
     
     public Integer getId() {
@@ -135,7 +135,7 @@ public class User {
         this.username= username;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+/*    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> book;
     public List<Book> getBooks(){
         return book;
@@ -143,4 +143,5 @@ public class User {
     public void setBooks(List<Book> books){
         this.book = books;
     }
+*/
 }

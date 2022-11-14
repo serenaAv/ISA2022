@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +67,7 @@ public class Travel {
         this.link = link;
     }
 
-    @ManyToMany(mappedBy = "travels")
+/*    @ManyToMany(mappedBy = "travels")
     private Set<User> users = new HashSet<>();
     public Set<User> getUsers(){
         return users;
@@ -75,8 +76,8 @@ public class Travel {
     public void setUsers(Set<User> users){
         this.users = users;
     }
-
-    @OneToMany(mappedBy = "travel", cascade = CascadeType.ALL, orphanRemoval = true)
+*/
+/*    @OneToMany(mappedBy = "travel",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> book;
     public List<Book> getBooks(){
         return book;
@@ -84,7 +85,7 @@ public class Travel {
     public void setBooks(List<Book> books){
         this.book = books;
     }
-
+*/
     
 
 

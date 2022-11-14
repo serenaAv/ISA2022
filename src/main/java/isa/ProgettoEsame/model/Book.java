@@ -1,8 +1,11 @@
 package isa.ProgettoEsame.model;
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,10 +45,34 @@ public class Book {
     public String getDate_book() {
         return date_book;
     }
-    public void setTime(String date_book) {
+    public void setDate_book(String date_book) {
         this.date_book = date_book;
     }
 
+
+/*    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name="id_trav", nullable=false,updatable=false,insertable=false)
+    private Travel travel;
+    public Travel getTravel(){
+        return travel;
+    }
+    public void setTravel(Travel travel){
+        this.travel = travel;
+    }
+
+    @Column(nullable=true)
+    private Integer id_trav;
+
+    public Integer getIdTrav()
+    {
+        return this.id_trav;
+    }
+
+    public void setIdTrav(Integer id_trav)
+    {
+        this.id_trav = id_trav;
+    }
+    */
 
     @ManyToOne
     @JoinColumn(name="id_trav")
@@ -57,6 +84,7 @@ public class Book {
         this.travel = travel;
     }
 
+
     @ManyToOne
     @JoinColumn(name="id_user")
     private User user;
@@ -66,5 +94,6 @@ public class Book {
     public void setUser(User user){
         this.user = user;
     }
+
 
 }
