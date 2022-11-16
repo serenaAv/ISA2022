@@ -1,3 +1,4 @@
+
 package isa.ProgettoEsame.model;
 
 
@@ -29,23 +30,27 @@ public class User {
 
     @Column(name = "email")
     @Email(message = "Inserire una mail valida")
-    @Size(max=60, message = "Inserire una mail valida")
     private String email;
 
     @Column(name = "firstname")
-    @NotBlank
+    @NotBlank (message ="Devi inserire il nome")
     @Size(max = 45)
     private String firstname;
 
+    @NotBlank (message ="Devi inserire il cognome")
+    @Size(max = 45)
     @Column(name = "lastname")
     private String lastname;
 
     @Column(name = "sex")
     private String sex;
 
+    @NotBlank (message ="Devi inserire lo username")
+    @Size(max = 45)
     @Column(name = "username")
     private String username;
 
+    @Size(min =3, max = 45, message ="Devi inserire una password di almeno 3 caratteri")
     @Column(name = "password")
     private String password;
 

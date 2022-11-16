@@ -4,7 +4,6 @@ import isa.ProgettoEsame.model.User;
 import isa.ProgettoEsame.repository.UserRepository;
 import isa.ProgettoEsame.model.MyUserDetails;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -26,23 +28,17 @@ public class Travel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotBlank (message ="Devi inserire la data")
     @Column(name = "date_travel")
     private String date_travel;
 
+    @NotBlank (message ="Devi inserire la partenza")
     @Column(name = "time_dep_real")
     private String time_dep_real;
 
+    @NotBlank (message ="Devi inserire l'arrivo")
     @Column(name = "time_arr_real")
     private String time_arr_real;
-
-    @Column(name = "n_pass")
-    private Integer n_pass;
-
-
-
-
-
-
 
 
 
@@ -119,12 +115,6 @@ public class Travel {
         this.time_arr_real = time_arr_real;
     }
 
-    public Integer getN_pass() {
-        return n_pass;
-    }
-    public void setN_pass(Integer n_pass) {
-        this.n_pass = n_pass;
-    }
 
 
 }

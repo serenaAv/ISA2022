@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import isa.ProgettoEsame.model.Travel;
 
 @Entity
@@ -22,6 +25,8 @@ public class Bus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank (message ="Devi inserire la targa")
+    @Size(max = 20)
     @Column(name = "plate")
     private String plate;
 
@@ -31,9 +36,11 @@ public class Bus {
     @Column(name = "description")
     private String description;
 
+    @NotBlank (message ="Devi inserire la data")
     @Column(name = "date_last_rev")
     private String date_last_rev;
 
+    @NotBlank (message ="Devi inserire la data")
     @Column(name = "date_last_carserv")
     private String date_last_carserv;
     

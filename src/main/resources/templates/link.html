@@ -141,7 +141,9 @@ table{
                     <td th:text="${link.time}"></td>
                     <td sec:authorize="hasAuthority('admin')"> 
                         <a th:href="@{link/edit/{id}(id=${link.id})}" class="btn btn-primary btn-sm mb-3">Aggiorna</a>
-                        <a th:href="@{/link/delete/{id}(id=${link.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>
+                        <a th:href="@{/link/delete/{id}(id=${link.id})}" class="btn btn-danger btn-sm mb-3"
+                        th:data-confirm-delete="|Sei sicuro di voler cancellare la destinazione ${link.destination}?|"
+                        onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">Elimina</a>
                     </td>
                 </tr>
             </tbody>

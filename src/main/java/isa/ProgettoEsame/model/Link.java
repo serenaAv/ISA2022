@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "links")
@@ -20,9 +21,11 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank (message ="Devi inserire la destinazione")
     @Column(name = "destination")
     private String destination;
 
+    @NotBlank (message ="Devi inserire il tempo")
     @Column(name = "time")
     private String time;
 
