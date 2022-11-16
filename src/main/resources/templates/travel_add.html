@@ -11,17 +11,35 @@
     <div class="container">
         <hr>
         <h2>Aggiungi viaggio</h2>
+        <br><br>
 
         <form action="#" th:action="@{/saveTravel}" th:object="${travel}" method="POST">
-            <input type="date" th:field="*{date_travel}" placeholder="Data partenza" class="form-control mb-4 col-4">
+            
+            <label for ="Selezione destinazione">Seleziona la destinazione</label>
+            <select th:field="*{link}" id="Selezione destinazione" class="form-control mb-4 col-4">
+                <th:block th:each="link : ${Listalink}">
+                    <option th:text="${link.destination}" th:value="${link.id}"/>                       
+                </th:block>
+            </select>
+
+            <label for ="Data partenza">Seleziona la data</label>
+            <input type="date" th:field="*{date_travel}" id="Data partenza" th:min="${#temporals.format(date,'yyyy-MM-dd')}" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('date_travel')}" th:errors="*{date_travel}">username error</span>
 
-            <input type="time" th:field="*{time_dep_real}" placeholder="Orario di partenza" class="form-control mb-4 col-4">
+            <label for ="Orario di partenza">Seleziona l'orario di partenza dalla sede</label>
+            <input type="time" th:field="*{time_dep_real}" id="Orario di partenza" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('time_dep_real')}" th:errors="*{time_dep_real}">username error</span>
 
-            <input type="time" th:field="*{time_arr_real}" placeholder="Orario di arrivo" class="form-control mb-4 col-4">
+            <label for ="Orario di arrivo">Seleziona l'orario di arrivo a destinazione</label>
+            <input type="time" th:field="*{time_arr_real}" id="Orario di arrivo" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('time_arr_real')}" th:errors="*{time_arr_real}">username error</span>
 
+            <label for ="Selezione bus">Seleziona il bus da utilizzare</label>
+            <select th:field="*{bus}" id="Selezione bus" class="form-control mb-4 col-4">
+                <th:block th:each="bus : ${Listabus}">
+                    <option th:text="${bus.plate}" th:value="${bus.id}"/>                       
+                </th:block>
+            </select>
 
             <button type="submit" class="btn btn-info col-2"> Salva</button>
         </form>

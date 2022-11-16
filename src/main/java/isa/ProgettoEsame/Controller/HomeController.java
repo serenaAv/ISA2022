@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
 
 @Controller
 public class HomeController {
@@ -271,7 +272,10 @@ public class HomeController {
     public ModelAndView travel_add(){
         ModelAndView mav=new ModelAndView();
         mav.setViewName("travel_add");
+        mav.addObject("Listabus",busService.getAllBus());
+        mav.addObject("Listalink",linkService.getAllLinks());
         mav.addObject("travel", new Travel());
+        mav.addObject("date", LocalDate.now());
         return mav;
     }
 
