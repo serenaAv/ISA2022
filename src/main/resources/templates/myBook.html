@@ -36,7 +36,7 @@
     <div class="topnav">
         <a href="/" >Home</a>
         <a href="/travel" id="b">Viaggi</a>
-        <a href="/user" id="c">Utenti registrati</a>
+        <a href="/user" id="c" sec:authorize="hasAuthority('admin')">Utenti registrati </a>
         <a href="/bus"  id="e">Autobus</a>
         <a href="/link" >Collegamenti disponibili</a>
         <a href="/book"  class="active" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
