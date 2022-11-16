@@ -19,6 +19,7 @@ import org.springframework.validation.Errors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Controller
@@ -201,6 +202,9 @@ public class HomeController {
 
     @PostMapping("/saveUser")
     public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult  bindingResult) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPw = encoder.encode(user.getPassword());
+        user.setPassword(encodedPw);
         if (bindingResult.hasErrors()){
             return "user_add"; 
         }
