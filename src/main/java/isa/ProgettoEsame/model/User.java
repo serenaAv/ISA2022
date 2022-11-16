@@ -50,7 +50,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Size(min =3, max = 45, message ="Devi inserire una password di almeno 3 caratteri")
+    @Size(min =3, message ="Devi inserire una password di almeno 3 caratteri")
     @Column(name = "password")
     private String password;
 
