@@ -211,9 +211,6 @@ public class HomeController {
 
     @PostMapping("/saveUser")
     public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult  bindingResult) {
-
-        userService.saveUser(user);
-        
         if (bindingResult.hasErrors()){
             return "user_add"; 
         }
@@ -337,17 +334,20 @@ public class HomeController {
         mav.addObject("Listatravel",travelService.getAllTravels());
         mav.addObject("Listauser", userService.getAllUser());
         mav.addObject("meUser", meUser);
+        mav.addObject("date", LocalDate.now());
         return mav;
     }
 
     @PostMapping("/saveBook")
     public String saveBook(@ModelAttribute("book") Book book) {
+        book.setDate_book(LocalDate.now());
         bookService.saveBook(book);
         return "redirect:/book";
     }
 
     @PostMapping("/saveMyBook")
     public String saveMyBook(@ModelAttribute("book") Book book) {
+        book.setDate_book(LocalDate.now());
         bookService.saveBook(book);
         return "redirect:/myBook";
     }
