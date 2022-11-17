@@ -22,7 +22,7 @@ public class Book {
     private Integer id;
 
     @Column(name = "date_book")
-    private String date_book;
+    private LocalDate date_book;
 
     @Column(name = "description")
     private String description;
@@ -42,10 +42,10 @@ public class Book {
         this.description = description;
     }
 
-    public String getDate_book() {
+    public LocalDate getDate_book() {
         return date_book;
     }
-    public void setDate_book(String date_book) {
+    public void setDate_book(LocalDate date_book) {
         this.date_book = date_book;
     }
 

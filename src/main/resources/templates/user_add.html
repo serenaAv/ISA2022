@@ -30,7 +30,7 @@
                 <select th:field="*{sex}" id="dd1">
                     <option th:value="M" th:text="M"></option>
                     <option th:value="F" th:text="F"></option>
-                </select>
+            </select>
 
             <input type="password" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">firstname error</span>

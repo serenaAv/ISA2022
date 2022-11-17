@@ -68,6 +68,11 @@ public class User {
         this.roles = roles;
     }
 
+    public void addRole(Role role)
+    {
+        this.roles.add(role);
+    }
+
 /*    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable  (name = "books",
                 joinColumns = @JoinColumn(name = "id_user"),

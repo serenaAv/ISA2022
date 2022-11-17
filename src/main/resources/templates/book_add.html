@@ -48,12 +48,9 @@
             <form action="#" th:action="@{/saveMyBook}" th:object="${book}" method="POST">
 
             <!--Devo mettere la data odierna di default e non farla modificare-->
-                <input type="date" th:field="*{date_book}" class="form-control mb-4 col-4">
-
-                <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
-
-            <!--    <input type="text" th:field="*{id_trav}" placeholder="Id Destinazione" class="form-control mb-4 col-4">-->
-
+            <input type="text"  id="*{date_book}" th:value="${#temporals.format(date, 'dd/MM/yyyy')}" name ="*{date_book}" class="form-control mb-4 col-4"  disabled>
+            <br><br>
+            <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
 
                 <select th:field="*{travel}" class="form-control mb-4 col-4">
                     <th:block th:each="travel : ${Listatravel}">

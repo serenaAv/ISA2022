@@ -211,9 +211,9 @@ public class HomeController {
 
     @PostMapping("/saveUser")
     public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult  bindingResult) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodedPw = encoder.encode(user.getPassword());
-        user.setPassword(encodedPw);
+
+        userService.saveUser(user);
+        
         if (bindingResult.hasErrors()){
             return "user_add"; 
         }
