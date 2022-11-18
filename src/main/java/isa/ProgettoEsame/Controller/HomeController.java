@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.stereotype.Controller;
 import isa.ProgettoEsame.model.*;
 import isa.ProgettoEsame.service.*;
+import net.bytebuddy.utility.RandomString;
 
 import javax.validation.Valid;
 import org.springframework.validation.Errors;
@@ -262,6 +263,28 @@ public class HomeController {
     public String UserProfile(@AuthenticationPrincipal MyUserDetails user, Model model) {
         model.addAttribute("user", user);
         return "myProfile";
+    }
+
+
+    @RequestMapping(value="/changePw",method=RequestMethod.GET)
+    public ModelAndView ChangePassword(@AuthenticationPrincipal MyUserDetails user){
+
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("ResetPwForm");
+        String email = user.getEmail();
+        //generate token di 45 (vedi max dim nella tabella di mysql)
+        String token = RandomString.make(45);
+        try
+        {
+            userService.updateResetPwToken(token, email);
+        }
+        catch (EmailNotFoundException exception)
+        {
+            mav.addObject("error", exception.getMessage());
+        }
+        mav.addObject("user", user);
+        mav.addObject("token", token);
+        return mav;
     }
   
     /*

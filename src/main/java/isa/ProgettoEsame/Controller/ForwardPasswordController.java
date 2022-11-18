@@ -93,7 +93,7 @@ public class ForwardPasswordController {
         String password = request.getParameter("password");
         System.out.println("La password passata è:"+password);
         User u = userService.getUserByResetPwToken(token);
-        System.out.println("Lo user considerato è"+u.getFirstname());
+        //System.out.println("Lo user considerato è"+u.getFirstname());
         if(u == null)
         {
             System.out.println("Lo user è null");
