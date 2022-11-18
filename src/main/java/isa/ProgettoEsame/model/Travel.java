@@ -1,5 +1,6 @@
 package isa.ProgettoEsame.model;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,8 +30,8 @@ public class Travel {
     private Integer id;
 
     @NotBlank (message ="Devi inserire la data")
-    @Column(name = "date_travel")
-    private String date_travel;
+    @Column(name = "date")
+    private LocalDate date;
 
     @NotBlank (message ="Devi inserire la partenza")
     @Column(name = "time_dep_real")
@@ -94,11 +95,11 @@ public class Travel {
         this.id = id;
     }
 
-    public String getDate_travel() {
-        return date_travel;
+    public LocalDate getDate() {
+        return date;
     }
-    public void setDate_travel(String date_travel) {
-        this.date_travel = date_travel;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getTime_dep_real() {

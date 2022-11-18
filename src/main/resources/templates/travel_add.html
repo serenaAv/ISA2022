@@ -23,8 +23,8 @@
             </select>
 
             <label for ="Data partenza">Seleziona la data</label>
-            <input type="date" th:field="*{date_travel}" id="Data partenza" th:min="${#temporals.format(date,'yyyy-MM-dd')}" class="form-control mb-4 col-4">
-            <span class="alert alert-danger" th:if="${#fields.hasErrors('date_travel')}" th:errors="*{date_travel}">username error</span>
+            <input type="date" th:field="*{date}" id="Data partenza" th:min="${#temporals.format(date,'yyyy-MM-dd')}" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">username error</span>
 
             <label for ="Orario di partenza">Seleziona l'orario di partenza dalla sede</label>
             <input type="time" th:field="*{time_dep_real}" id="Orario di partenza" class="form-control mb-4 col-4">

@@ -1,5 +1,6 @@
 package isa.ProgettoEsame.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,12 @@ public class TravelServiceImpl implements TravelService {
             throw new RuntimeException(" Travel not found for id :: " + id);
         }
         return travel;
+    }
+
+    @Override
+    public List <Travel> getAllTravelByDateGreaterThanEqual (LocalDate date)
+    {
+        return travelRepository.findByDateGreaterThanEqual(date);
     }
 
 }

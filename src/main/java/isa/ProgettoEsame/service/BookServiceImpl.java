@@ -20,6 +20,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List < Book > getAllBooksByUserId(int id)
+    {
+        return bookRepository.findAllBooksByUserId(id);
+    }
+
+    @Override
     public void deleteBookById(int id) {
         this.bookRepository.deleteById(id);
     }
