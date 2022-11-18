@@ -41,28 +41,38 @@
         <a href="/bus"  id="e">Autobus</a>
         <a href="/link" >Collegamenti disponibili</a>
         <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
-        <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
+        <a href="/myBook" sec:authorize="!hasAuthority('admin')">Le mie prenotazioni</a>
         <a href="/myProfile" class="active" >Mio profilo</a>
         <a href="/logout" th:action="@{/logout}">Logout</a>
     </div>
     <br><br>
 
     <div class="container">
-        <h2>Dettaglio utente</h2>
-        <form>
-            <label>Name</label>
-            <input type="text" th:value="${user.username}" class="form-control mb-4 col-4">
-            <label>Firstname</label>
-            <input type="text" th:value="${user.firstname}" class="form-control mb-4 col-4">
-            <label>Lastname</label>
-            <input type="text" th:value="${user.lastname}" class="form-control mb-4 col-4">
-            <label>Sex</label>
-            <input type="text" th:value="${user.sex}" class="form-control mb-4 col-4">
-            <label>Role</label>
-            <input type="text" th:value="${user.authorities}" class="form-control mb-4 col-4" readonly>
+        <h2>Mio profilo</h2>
+        <form action="#" th:action="@{/saveUserWithoutPw_P}" th:object="${user}" method="POST">
+
+            <!-- Add hidden form field to handle update -->
+            <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{password}" />
+            <input type="hidden" th:field="*{sex}" />
+            <label>Nome</label>
+            <input type="text" th:field="*{firstname}" class="form-control mb-4 col-4">
+            <label>Cognome</label>
+            <input type="text" th:field="*{lastname}" class="form-control mb-4 col-4">
+            <label>Username</label>
+            <input type="text" th:field="*{username}" class="form-control mb-4 col-4">
             <label>Email</label>
-            <input type="text" th:value="${user.email}" class="form-control mb-4 col-4">
-        </form>     <!--Da aggiungere il pulsante per salvare le modifiche-->
+            <input type="text" th:field="*{email}" class="form-control mb-4 col-4">
+            
+            
+            <button type="submit" class="btn btn-info col-2"
+            th:data-confirm-delete="|Al termine della modifica dovrai effettuare di nuovo il login|"
+                        onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"> Modifica</button>
+            <br><br>
+            <a th:href="@{/changePw}" class="btn btn-info col-2">Cambia password</a>
+        </form> 
+        <br>
+        <a th:href="@{/}"> Torna alla home</a>
     </div>
 </body>
 
