@@ -34,7 +34,7 @@
                     <td th:text="${travel.link.destination}"></td>
                     <td> <a th:href="@{travel/detail/{id}(id=${travel.id})}" class="btn btn-info btn-sm mb-3">Dettagli</a> 
                         <a th:href="@{/travel/delete/{id}(id=${travel.id})}" class="btn btn-danger btn-sm mb-3" sec:authorize="hasAuthority('admin')"
-                        th:data-confirm-delete="|Sei sicuro di voler cancellare il viaggio del ${travel.date_travel}?|"
+                        th:data-confirm-delete="|Sei sicuro di voler cancellare il viaggio del ${travel.date}?|"
                         onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
                         >Elimina</a>
                     </td>

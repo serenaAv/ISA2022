@@ -29,7 +29,7 @@ public class Travel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank (message ="Devi inserire la data")
+    //@NotBlank (message ="Devi inserire la data")
     @Column(name = "date")
     private LocalDate date;
 
