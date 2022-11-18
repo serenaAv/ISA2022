@@ -116,7 +116,7 @@ table{
         <a href="/link" class="active">Collegamenti disponibili</a>
         <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
         <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
-        <a href="/myProfile" >Mio profilo</a>
+        <a href="/myProfile" sec:authorize="hasAuthority('user')" >Mio profilo</a>
         <a href="/logout" th:action="@{/logout}">Logout</a>
     </div>
     <br><br>

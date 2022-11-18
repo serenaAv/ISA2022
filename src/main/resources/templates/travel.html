@@ -40,8 +40,8 @@
         <a href="/bus"  id="e">Autobus</a>
         <a href="/link" >Collegamenti disponibili</a>
         <a href="/book" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
-        <a href="/myBook" sec:authorize="hasAuthority('user')">Le mie prenotazioni</a>
-        <a href="/myProfile" >Mio profilo</a>
+        <a href="/myBook" sec:authorize="!hasAuthority('admin')">Le mie prenotazioni</a>
+        <a href="/myProfile" sec:authorize="!hasAuthority('admin')">Mio profilo</a>
         <a href="/logout" th:action="@{/logout}">Logout</a>
     </div>
     <br><br>

@@ -40,6 +40,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveUserWithoutPw(User user){
+        Role roleUser = roleRepository.findByRole("User");
+        user.addRole(roleUser);
+        this.userRepository.save(user);
+    }
+
+    @Override
     public User getUserById(int id) {
         Optional < User > optional = userRepository.findById(id);
         User user = null;

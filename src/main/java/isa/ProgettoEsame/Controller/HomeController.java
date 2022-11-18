@@ -219,6 +219,18 @@ public class HomeController {
         }
     }
 
+    @PostMapping("/saveUserWithoutPw_P")
+    public String saveWithoutPw_profile(@ModelAttribute("user") User user) {
+            userService.saveUserWithoutPw(user);
+            return "redirect:/login.html";
+    }
+
+    @PostMapping("/saveUserWithoutPw")
+    public String saveUserEdit(@ModelAttribute("user") User user) {
+            userService.saveUserWithoutPw(user);
+            return "redirect:/user";
+    }
+
     @PostMapping("/saveUser_reg")
     public String saveUser_reg(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
