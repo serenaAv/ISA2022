@@ -1,5 +1,6 @@
 package isa.ProgettoEsame.service;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,39 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(int id) {
         this.userRepository.deleteById(id);
+    }
+
+    //setto un token univo allo user che deve resettare la pw e lo trovo tramite la mail che mi viene data
+    @Override
+    public void updateResetPwToken(String token, String email) throws EmailNotFoundException
+    {
+        User user = userRepository.findByEmail(email);
+        if (user != null)
+        {
+            user.setResetPwToken(token);
+            userRepository.save(user);
+        }
+        else
+        {
+            throw new EmailNotFoundException("Non esiste nessun utente con "+email+"come mail");
+        }
+    }
+
+    //tiro fuori l'utente in base al token (è univoco)
+    @Override
+    public User getUserByResetPwToken(String resetPwToken)
+    {
+        return userRepository.findByResetPwToken(resetPwToken);
+    }
+
+    //aggiorno la pw che mi viene data e resetto il token
+    public void updatePw(User user, String newPw)
+    {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodePw = encoder.encode(newPw);
+        user.setPassword(encodePw);
+        user.setResetPwToken(null);
+
+        userRepository.save(user);
     }
 }

@@ -54,6 +54,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name="resetpwtoken")
+    private String resetPwToken;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable  (name = "usersroles",
                 joinColumns = @JoinColumn(name = "id_user"),
@@ -117,6 +120,10 @@ public class User {
         return username;
     }
 
+    public String getResetPwToken() {
+        return resetPwToken;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -143,6 +150,10 @@ public class User {
 
     public void setUsername(String username) {
         this.username= username;
+    }
+
+    public void setResetPwToken(String resetPwToken) {
+        this.resetPwToken= resetPwToken;
     }
 
 /*    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

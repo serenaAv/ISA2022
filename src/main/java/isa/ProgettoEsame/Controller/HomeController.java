@@ -185,7 +185,6 @@ public class HomeController {
         return mav;
     }
 
-
     @RequestMapping(value="/user",method=RequestMethod.GET)
     public ModelAndView user(){
         ModelAndView mav=new ModelAndView();
