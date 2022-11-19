@@ -43,7 +43,7 @@ public class Travel {
 
 
 
-    @ManyToOne
+    @ManyToOne 
     @JoinColumn(name = "id_bus")
     private Bus bus;
 

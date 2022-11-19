@@ -71,7 +71,9 @@
                     <td th:text="${book.user.username}"></td>
                     <td> 
                         <a th:href="@{book/edit/{id}(id=${book.id})}" class="btn btn-primary btn-sm mb-3">Modifica</a>
-                        <a th:href="@{/book/delete/{id}(id=${book.id})}" class="btn btn-danger btn-sm mb-3">Elimina</a>
+                        <a th:href="@{/book/delete/{id}(id=${book.id})}" class="btn btn-danger btn-sm mb-3"
+                        th:data-confirm-delete="|Sei sicuro di voler cancellare la prenotazione?|"
+                        onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">Elimina</a>
                     </td>
                 </tr>
             </tbody>
