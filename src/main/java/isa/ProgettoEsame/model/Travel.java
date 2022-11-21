@@ -20,17 +20,20 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name = "travels")
 public class Travel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank (message ="Devi inserire la data")
+    //@NotBlank (message ="Devi inserire la data")
     @Column(name = "date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate date;
 
     @NotBlank (message ="Devi inserire la partenza")
