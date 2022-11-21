@@ -36,8 +36,10 @@ table{
   color: white;
 }
 </style>
+</style>
 </head>
     <body>
+        <div class="a">
         <div class="topnav">
             <a href="/" class="active">Home</a>
             <a href="/travel" id="b">Viaggi</a>
@@ -50,38 +52,53 @@ table{
             <a href="/logout" th:action="@{/logout}">Logout</a>
         </div>
         <br>
-        <h1 th:inline="text" textalign="center">Welcome [[${#httpServletRequest.remoteUser}]]</h1>
-                   <!--Mi permette di mostrare il ruolo di chi si logga: <span sec:authentication="principal.authorities">Roles</span>-->
-                   
-                   <text>Al momento ti trovi nella Home che può darti accesso a:</text>
+        <table>
+            <tr>
+                <td width="10"></td>
+                <td>
+                    <h2 th:inline="text" textalign="center">Welcome [[${#httpServletRequest.remoteUser}]]</h2>
+                    <text>Al momento ti trovi nella Home che può darti accesso a:</text>
                     <ul>
                         <li>Sezione viaggi in cui potrai:</li>
                         <ul>
-                            <li>Registrare un nuovo viaggio</li>
-                            <li>Modificare i viaggi esistenti</li>
-                            <li>Cancellare i viaggi presenti</li>
+                            <li>Visualizzare nel dettaglio i viaggi che la compagnia offre</li>
+                            <li sec:authorize="hasAuthority('admin')">Inserire/modificare/cancellare i viaggi esistenti</li>
+                        </ul>
+                        <br sec:authorize="hasAuthority('admin')">
+                        <li sec:authorize="hasAuthority('admin')">Sezione utenti registrati in cui potrai</li>
+                        <ul>
+                            <li sec:authorize="hasAuthority('admin')">Visualizzare nel dettaglio tutti gli utenti registrati</li>
+                            <li sec:authorize="hasAuthority('admin')">Inserire/modificare/cancellare gli utenti esistenti</li>
                         </ul>
                         <br>
-                        <li>Sezione utenti registrati in cui potrai</li>
+                        <li>Sezione autobus in cui potrai:</li>
                         <ul>
-                            <li>Inserire un nuovo utente</li>
-                            <li>Modificare gli utenti esistenti</li>
-                            <li>Cancellare gli utenti presenti</li>
+                            <li>Visualizzare nel dettaglio i bus che la compagnia dispone</li>
+                            <li sec:authorize="hasAuthority('admin')">Inserire/modificare/cancellare i bus esistenti</li>
                         </ul>
                         <br>
-                        <li>Sezione collegamenti disponibili in cui potrai</li>
+                        <li>Sezione collegamenti disponibili in cui potrai:</li>
                         <ul>
-                            <li>Inserire un nuovo collegamento</li>
-                            <li>Modificare i collegamenti esistenti</li>
-                            <li>Cancellare i collegamenti presenti</li>
+                            <li>Visualizzare nel dettaglio le mete che la compagnia offre</li>
+                            <li sec:authorize="hasAuthority('admin')">Inserire/modificare/cancellare i collegamenti presenti</li>
                         </ul>
                         <br>
-                        <li>Sezione bus in cui potrai</li>
+                        <li sec:authorize="hasAuthority('admin')">Sezione le mie prenotazioni in cui potrai:</li>
+                        <li sec:authorize="!hasAuthority('admin')">Sezione prenotazioni in cui potrai:</li>
                         <ul>
-                            <li>Inserire un nuovo autobus</li>
-                            <li>Modificare le caratteristiche degli autobus presenti</li>
-                            <li>Cancellare un autobus presente</li>
+                            <li sec:authorize="hasAuthority('admin')">Visualizzare le prenotazioni effettuate</li>
+                            <li sec:authorize="!hasAuthority('admin')">Visualizzare tutte le prenotazioni</li>
+                            <li>Inserire/modificare/cancellare le prenotazioni esistenti</li>
                         </ul>
                     </ul>
+                  </td>
+                  <td width="300"></td>
+              <td><br><br><img src="https://img.freepik.com/premium-vector/bus-travel-company-logo-emblem-excursion-tourist-bus-rental-organisation-travel-agency-print-stamps-bus-typography-emblem_140930-375.jpg" width="450"></td>
+              
+            </tr>
+        </table>
+        
+                   
     </body>
+</div>
 </html>

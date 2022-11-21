@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
     <body>
         <div class="container text-center">
+            <br>
             <div>
                 <h2>Reset Password</h2>
             </div>
@@ -10,31 +13,18 @@
                     <div>
                         <input type="hidden" name="token" th:value="${token}"/>
                         <p>
-                            <input type="password" name="password" class="form-control" placeholder="Inserisci la nuova password" required autofocus/>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Inserisci la nuova password" required autofocus/>
                         </p>
                         <p>
-                            <input type="password" name="confirmpassword" class="form-control" placeholder="Ripeti password" required autofocus oninput="ConfrontaPw(this);"/>
+                            <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" placeholder="Ripeti password" required autofocus oninput="ConfrontaPw(this);"/>
                         </p>
                         <p class="text-center">
-                            <input type="submit" value="Cambia Password" class="btn btn-primary"/> 
+                            <input type="submit" value="Cambia Password" class="btn btn-primary" 
+                        /> 
                         </p>
                     </div>
                 </div>
             </form>
         </div>
-<!--SCRIPT NON FUNZIONA-->
-        <script>
-            function ConfrontaPw(fieldConfirmPassword)
-            {
-                if (fieldConfirmPassword.value != $("#password").val())
-                {
-                    fieldConfirmPassword.setCustomValidity("Le password non corrispondono");
-                }
-                else
-                {
-                    fieldConfirmPassword.setCustomValidity("");
-                }
-            }
-        </script>
     </body>
 </html>

@@ -56,6 +56,7 @@ public class ForwardPasswordController {
             String resetPwLink = utility.getSiteURL(request) + "/reset_password?token="+token;
             //invio email contenente il link
             sendEmail(email, resetPwLink);
+            model.addAttribute("message", "Abbiamo appena inviato la password all'indirizzo email. Controlla la tua email.");
         }
         catch (EmailNotFoundException exception)
         {

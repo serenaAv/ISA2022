@@ -45,7 +45,7 @@
         <div class="col-12 col-lg-9 col-xl-7">
             <h2>Aggiungi prenotazione</h2>
 
-            <form action="#" th:action="@{/saveBook}" th:object="${book}" method="POST">
+            <form action="#" th:action="@{/saveMyBook}" th:object="${book}" method="POST">
 
             <!--Devo mettere la data odierna di default e non farla modificare-->
             <input type="text"  id="*{date_book}" th:value="${#temporals.format(date, 'dd/MM/yyyy')}" name ="*{date_book}" class="form-control mb-4 col-4"  disabled>

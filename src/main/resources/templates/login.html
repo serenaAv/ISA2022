@@ -77,14 +77,14 @@ span.psw {
 <form th:action="@{/login.html}" method="post">
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="userId" required>
+    <input type="text" placeholder="Username" name="userId" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="pwd" required>
+    <input type="password" placeholder="Password" name="pwd" required>
         
     <button type="submit">Login</button>
     <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
+      <input type="checkbox" checked="checked" name="remember"> Ricordami
     </label>
     <br><br>
     <label>Non sei registrato?</label> <a th:href="@{/registration}">Registrati</a>
@@ -93,7 +93,7 @@ span.psw {
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a th:href="@{/forgot_password}">password?</a></span>
+    <span class="psw"><a th:href="@{/forgot_password}">Password dimendicata?</a></span>
   </div>
 </form>
 </body>
