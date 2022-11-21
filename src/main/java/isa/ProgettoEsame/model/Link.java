@@ -56,7 +56,7 @@ public class Link {
 
 
 
-    @OneToMany(mappedBy = "link", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "link", cascade = CascadeType.ALL)
     private List<Travel> travels;
     public List<Travel> getTravels(){
         return travels;

@@ -46,7 +46,7 @@ public class Bus {
     
 
 
-    @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "bus", cascade = CascadeType.ALL)
     private List<Travel> travels;
     public List<Travel> getTravels(){
         return travels;
