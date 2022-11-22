@@ -55,13 +55,13 @@ public class Bus {
         this.travels = travels;
     }
 
-
-
-
     public Integer getId() {
         return id;
     }
     public void setId(Integer id) {
+        if(id <=0){
+            throw new IllegalArgumentException("Il busId deve essere > 0.");
+        }
         this.id = id;
     }
 
@@ -69,6 +69,9 @@ public class Bus {
         return plate;
     }
     public void setPlate(String plate) {
+        if(plate.length() > 6) {
+            throw new IllegalArgumentException("La targa può avere max 6 caratteri.");
+        }
         this.plate = plate;
     }
 
@@ -76,6 +79,9 @@ public class Bus {
         return y;
     }
     public void setY(Integer y) {
+        if(y < 0 || y > 3000) {
+            throw new IllegalArgumentException("Anno pubblicazione libro deve essere compreso fra 0 e 2100.");
+        }
         this.y = y;
     }
 
@@ -83,6 +89,9 @@ public class Bus {
         return description;
     }
     public void setDescription(String description) {
+        if(description.length() > 50) {
+            throw new IllegalArgumentException("La descrizione può avere massimo 50 caratteri.");
+        }
         this.description = description;
     }
 
