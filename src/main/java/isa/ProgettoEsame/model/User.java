@@ -34,11 +34,9 @@ public class User {
 
     @Column(name = "firstname")
     @NotBlank (message ="Devi inserire il nome")
-    @Size(max = 45)
     private String firstname;
 
     @NotBlank (message ="Devi inserire il cognome")
-    @Size(max = 45)
     @Column(name = "lastname")
     private String lastname;
 
@@ -46,7 +44,6 @@ public class User {
     private String sex;
 
     @NotBlank (message ="Devi inserire lo username")
-    @Size(max = 45)
     @Column(name = "username")
     private String username;
 
@@ -125,6 +122,9 @@ public class User {
     }
 
     public void setId(Integer id) {
+        if(id <=0){
+            throw new IllegalArgumentException("Il linkId deve essere > 0.");
+        }
         this.id = id;
     }
 
@@ -133,11 +133,17 @@ public class User {
     }
 
     public void setFirstname(String firstname) {
-        this.firstname= firstname;
+        if(firstname.length() > 30) {
+            throw new IllegalArgumentException("Il nome può avere massimo 30 caratteri.");
+        }
+        this.firstname = firstname;
     }
 
     public void setLastname(String lastname) {
-        this.lastname= lastname;
+        if(lastname.length() > 30) {
+            throw new IllegalArgumentException("Il cognome può avere massimo 30 caratteri.");
+        }
+        this.lastname = lastname;
     }
 
     public void setSex(String sex) {
@@ -145,10 +151,16 @@ public class User {
     }
     
     public void setPassword(String password) {
+        if(username.length() > 64) {
+            throw new IllegalArgumentException("La password può avere al massimo 64 caratteri.");
+        }
         this.password= password;
     }
 
     public void setUsername(String username) {
+        if(username.length() > 20) {
+            throw new IllegalArgumentException("Lo username può avere massimo 20 caratteri.");
+        }
         this.username= username;
     }
 
