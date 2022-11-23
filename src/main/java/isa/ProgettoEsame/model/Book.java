@@ -32,6 +32,9 @@ public class Book {
         return id;
     }
     public void setId(Integer id) {
+        if(id <=0){
+            throw new IllegalArgumentException("Il BookId deve essere > 0.");
+        }
         this.id = id;
     }
 
@@ -39,6 +42,9 @@ public class Book {
         return description;
     }
     public void setDescription(String description) {
+        if(description.length() > 50) {
+            throw new IllegalArgumentException("La descrizione può avere massimo 50 caratteri.");
+        }
         this.description = description;
     }
 
