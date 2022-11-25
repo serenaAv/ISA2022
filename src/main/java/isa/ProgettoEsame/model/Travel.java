@@ -95,6 +95,9 @@ public class Travel {
         return id;
     }
     public void setId(Integer id) {
+        if(id <=0){
+            throw new IllegalArgumentException("Il linkId deve essere > 0.");
+        }
         this.id = id;
     }
 

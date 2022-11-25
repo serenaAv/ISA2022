@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "links")
@@ -34,6 +35,9 @@ public class Link {
         return id;
     }
     public void setId(Integer id) {
+        if(id <=0){
+            throw new IllegalArgumentException("Il linkId deve essere > 0.");
+        }
         this.id = id;
     }
 
@@ -41,6 +45,9 @@ public class Link {
         return destination;
     }
     public void setDestination(String destination) {
+        if(destination.length() > 50) {
+            throw new IllegalArgumentException("La descrizione può avere massimo 50 caratteri.");
+        }
         this.destination = destination;
     }
 
