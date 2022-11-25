@@ -13,11 +13,11 @@
         <h2>Aggiungi collegamento</h2>
 
         <form action="#" th:action="@{/saveLink}" th:object="${link}" method="POST">
-            <input type="text" th:field="*{destination}" placeholder="Destinazione" class="form-control mb-4 col-4">
-            <span class="alert alert-danger" th:if="${#fields.hasErrors('destination')}" th:errors="*{destination}">username error</span>
+            <input type="text" name="Destinazione" th:field="*{destination}" placeholder="Destinazione" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('destination')}" th:errors="*{destination}">Destination error</span>
 
-            <input type="text" th:field="*{time}" placeholder="Tempo previsto" class="form-control mb-4 col-4">
-            <span class="alert alert-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">username error</span>
+            <input type="text" name="Tempo previsto" th:field="*{time}" placeholder="Tempo previsto" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Time error</span>
 
             <button type="submit" class="btn btn-info col-2"> Salva</button>
         </form>

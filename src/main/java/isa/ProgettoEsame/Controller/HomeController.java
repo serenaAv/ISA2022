@@ -19,7 +19,9 @@ import javax.validation.Valid;
 import org.springframework.validation.Errors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
@@ -295,7 +297,14 @@ public class HomeController {
     public ModelAndView travel(){
         ModelAndView mav=new ModelAndView();
         mav.setViewName("travel");
-        mav.addObject("Listatravel", travelService.getAllTravels());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("admin"))) {
+            mav.addObject("Listatravel", travelService.getAllTravels());
+        }
+        else
+        {
+            mav.addObject("Listatravel",travelService.getAllTravelByDateGreaterThanEqual(LocalDate.now()));
+        }
         return mav;
     }
 
@@ -380,7 +389,7 @@ public class HomeController {
     }
 
     @PostMapping("/saveMyBook")
-    public String saveMyBook(@ModelAttribute("book") Book book) {
+    public String saveMyBook(@ModelAttribute("book") Book book, @AuthenticationPrincipal MyUserDetails meUser) {
         book.setDate_book(LocalDate.now());
         bookService.saveBook(book);
         return "redirect:/myBook";
