@@ -19,7 +19,7 @@
             <input type="text" name="Tempo previsto" th:field="*{time}" placeholder="Tempo previsto" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Time error</span>
 
-            <button type="submit" class="btn btn-info col-2"> Salva</button>
+            <button type="submit" name="submit" class="btn btn-info col-2"> Salva</button>
         </form>
 
         <hr>
