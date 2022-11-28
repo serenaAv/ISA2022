@@ -88,14 +88,14 @@ public class SeleniumTest {
         Thread.sleep(2000);
 
         /*Inserimento di un nuovo link*/
-    /*    driver.navigate().to("http://localhost:8080/link/add");
+        driver.navigate().to("http://localhost:8080/link/add");
         Thread.sleep(2000);
         driver.findElement(By.name("destination")).sendKeys("Cracovia-Selenium");
         driver.findElement(By.name("time")).sendKeys("6");
         Thread.sleep(2000);
         driver.findElement(By.name("submit")).click();
         Thread.sleep(2000);
-         */
+    
 
         /*Modifca del collegamento relativo a Barcellona*/
         driver.navigate().to("http://localhost:8080/link");
