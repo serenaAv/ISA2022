@@ -9,6 +9,7 @@ public interface UserService {
     void saveUser(User user);
     void saveUserWithoutPw(User user);
     User getUserById(int id);
+    User getUserByUsername(String username);
     void deleteUserById(int id);
     void updateResetPwToken(String token,String email) throws EmailNotFoundException;
     User getUserByResetPwToken(String resetPwToken);

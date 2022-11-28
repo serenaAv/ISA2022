@@ -26,7 +26,7 @@ public class Bus {
     private Integer id;
 
     @NotBlank (message ="Devi inserire la targa")
-    @Size(max = 20)
+    @Size(max = 7)
     @Column(name = "plate")
     private String plate;
 
@@ -69,7 +69,7 @@ public class Bus {
         return plate;
     }
     public void setPlate(String plate) {
-        if(plate.length() > 6) {
+        if(plate.length() > 7) {
             throw new IllegalArgumentException("La targa può avere max 6 caratteri.");
         }
         this.plate = plate;

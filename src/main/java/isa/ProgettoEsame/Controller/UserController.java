@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -11,9 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import isa.ProgettoEsame.model.*;
+import isa.ProgettoEsame.repository.RoleRepository;
 import isa.ProgettoEsame.service.*;
 import net.bytebuddy.utility.RandomString;
 import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
@@ -67,14 +71,10 @@ public class UserController {
 
     @PostMapping("/saveUserWithoutPw_P")
     public String saveWithoutPw_profile(@ModelAttribute("user") User user) {
-            userService.saveUserWithoutPw(user);
-            return "redirect:/login.html";
-    }
-
-    @PostMapping("/saveUserWithoutPw")
-    public String saveUserEdit(@ModelAttribute("user") User user) {
-            userService.saveUserWithoutPw(user);
-            return "redirect:/user";
+        User storedUser = userService.getUserById(user.getId());
+        user.setPassword(storedUser.getPassword());
+        userService.saveUserWithoutPw(user);
+        return "redirect:/login.html";
     }
 
     @PostMapping("/saveUser_reg")
@@ -95,6 +95,14 @@ public class UserController {
         return "user_edit";
     }
 
+    @PostMapping("/saveUserWithoutPw")
+    public String saveUserEdit(@ModelAttribute("user") User user) {
+        User DbUser = userService.getUserById(user.getId());
+        user.setPassword(DbUser.getPassword());
+        userService.saveUserWithoutPw(user);
+        return "redirect:/user";
+    }
+
     @GetMapping("/user/detail/{id}")
     public String showFormForDetail_user(@PathVariable(value = "id") int id, Model model) {
 
@@ -105,7 +113,8 @@ public class UserController {
     }
 
     @GetMapping("/myProfile")
-    public String UserProfile(@AuthenticationPrincipal MyUserDetails user, Model model) {
+    public String UserProfile(@AuthenticationPrincipal MyUserDetails loggedUser, Model model) {
+        User user = userService.getUserByUsername(loggedUser.getUsername());
         model.addAttribute("user", user);
         return "myProfile";
     }

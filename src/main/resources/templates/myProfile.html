@@ -51,9 +51,8 @@
         <h2>Mio profilo</h2>
         <form action="#" th:action="@{/saveUserWithoutPw_P}" th:object="${user}" method="POST">
 
-            <!-- Add hidden form field to handle update -->
+            <!-- Add hidden form field to handle update-->
             <input type="hidden" th:field="*{id}" />
-            <input type="hidden" th:field="*{password}" />
             <input type="hidden" th:field="*{sex}" />
             <label>Nome</label>
             <input type="text" th:field="*{firstname}" class="form-control mb-4 col-4">
