@@ -47,14 +47,14 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Size(min =3, max = 64, message ="Devi inserire una password di almeno 3 caratteri")
+    @Size(min = 3, max = 64, message ="Devi inserire una password di almeno 3 caratteri")
     @Column(name = "password")
     private String password;
 
     @Column(name="resetpwtoken")
     private String resetPwToken;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.DETACH}, fetch = FetchType.EAGER)
     @JoinTable  (name = "usersroles",
                 joinColumns = @JoinColumn(name = "id_user"),
                 inverseJoinColumns = @JoinColumn (name="role_id"))
@@ -151,7 +151,7 @@ public class User {
     }
     
     public void setPassword(String password) {
-        if(username.length() > 64) {
+        if(password.length() > 64) {
             throw new IllegalArgumentException("La password può avere al massimo 64 caratteri.");
         }
         this.password= password;

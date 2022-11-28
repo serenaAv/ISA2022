@@ -89,7 +89,6 @@ public class UserController {
 
     @GetMapping("/user/edit/{id}")
     public String showFormForUpdate_user(@PathVariable(value = "id") int id, Model model) {
-
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
         return "user_edit";
@@ -97,8 +96,6 @@ public class UserController {
 
     @PostMapping("/saveUserWithoutPw")
     public String saveUserEdit(@ModelAttribute("user") User user) {
-        User DbUser = userService.getUserById(user.getId());
-        user.setPassword(DbUser.getPassword());
         userService.saveUserWithoutPw(user);
         return "redirect:/user";
     }

@@ -22,20 +22,19 @@
 
             <input type="text" th:field="*{firstname}" placeholder="Nome" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">firstname error</span>
-
-            <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
-            <span class="alert alert-danger" th:if="${#fields.hasErrors('email')}" cssClass="error" th:errors="*{email}">email error</span>
-
+            
             <label>Sesso</label>
                 <select th:field="*{sex}" id="dd1">
                     <option th:value="M" th:text="M"></option>
                     <option th:value="F" th:text="F"></option>
             </select>
 
-            <input type="password" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
-            <span class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">firstname error</span>
-            
+            <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('email')}" cssClass="error" th:errors="*{email}">email error</span>
 
+            <input type="password" th:field="*{password}" placeholder="Password" class="form-control mb-4 col-4">
+            <span class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
+            
             <button type="submit" class="btn btn-info col-2"> Salva</button>
         </form>
 
