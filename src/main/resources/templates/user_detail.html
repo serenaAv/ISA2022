@@ -14,7 +14,8 @@
         <h2>Dettaglio utente</h2>
 
         <form action="#" th:object="${user}" method="POST">
-            <!-- Add hidden form field to handle update -->
+            <label>Id Utente</label>
+            <input type="text" th:field="*{id}" class="form-control mb-4 col-4">
             <label>Username</label>
             <input type="text" th:field="*{username}" class="form-control mb-4 col-4">
             <label>Nome</label>

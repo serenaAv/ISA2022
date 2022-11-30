@@ -53,10 +53,9 @@
         <table border="1" class="table table-striped table-responsive-md">
             <thead>
                 <tr>
-                    <th>ID Utente</th>
+                    <th>Id Utente</th>
                     <th>Username</th>
-                    <th>Cognome</th>
-                    <th>Sesso</th>
+                    <th>Email di contatto</th>
                     <th>Azioni </th>
                 </tr>
             </thead>
@@ -64,8 +63,7 @@
                 <tr th:each="us : ${Listauser}">
                     <td th:text="${us.id}"></td>
                     <td th:text="${us.username}"></td>
-                    <td th:text="${us.lastname}"></td>
-                    <td th:text="${us.sex}"></td>
+                    <td th:text="${us.email}"></td>
                     <td >
                         <a th:href="@{user/detail/{id}(id=${us.id})}" class="btn btn-info btn-sm mb-3">Dettagli</a> 
                         <a th:href="@{user/edit/{id}(id=${us.id})}" th:if= "${us.firstname != 'Christian'} and ${us.firstname != 'Serena'}" class="btn btn-primary btn-sm mb-3">Modifica</a>

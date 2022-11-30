@@ -14,13 +14,18 @@
         <h2>Dettaglio viaggio</h2>
 
         <form action="#" th:object="${travel}" method="POST">
-            <!-- Add hidden form field to handle update -->
-            <label>Data viaggio</label>
+            <label>Id</label>
+            <input type="text" th:field="*{id}" class="form-control mb-4 col-4">
+            <label>Data</label>
             <input type="text" th:field="*{date}" class="form-control mb-4 col-4">
             <label>Ora di partenza</label>
             <input type="text" th:field="*{time_dep_real}" class="form-control mb-4 col-4">
             <label>Ora di arrivo</label>
             <input type="text" th:field="*{time_arr_real}" class="form-control mb-4 col-4">
+            <label>Bus Utilizzato</label>
+            <input type="text" th:field="*{bus.plate}" class="form-control mb-4 col-4">
+            <label>Destinazione</label>
+            <input type="text" th:field="*{link.destination}" class="form-control mb-4 col-4">
         </form>
 
         <hr>

@@ -40,7 +40,7 @@
         <a href="/bus"  id="e">Autobus</a>
         <a href="/link" >Collegamenti disponibili</a>
         <a href="/book"  class="active" sec:authorize="hasAuthority('admin')">Prenotazioni</a>
-            <a href="/myBook" sec:authorize="!hasAuthority('admin')">Le mie prenotazioni</a>
+            <a href="/myBook"  class="active" sec:authorize="!hasAuthority('admin')">Le mie prenotazioni</a>
             <a href="/myProfile" sec:authorize="!hasAuthority('admin')" >Mio profilo</a>
             <a href="/logout" th:action="@{/logout}">Logout</a>
     </div>
@@ -53,8 +53,8 @@
         <table border="1" class="table table-striped table-responsive-md">
             <thead>
                 <tr>
-                    <th>ID Prenotazione</th>
-                    <th>Data</th>
+                    <th>Id</th>
+                    <th>Data Prenotazione</th>
                     <th>Descrizione </th>
                     <th>Data viaggio</th>
                     <th>Username Utente</th>

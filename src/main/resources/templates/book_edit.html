@@ -17,12 +17,18 @@
 
             <!-- Add hidden form field to handle update -->
             <input type="hidden" th:field="*{id}" />
-            <input type="hidden" th:field="*{travel.id}" />
             <input type="hidden" th:field="*{user.id}" />
 
             <input type="text" name="description" th:field="*{description}" class="form-control mb-4 col-4">
 
             <input type="text" th:field="*{date_book}" class="form-control mb-4 col-4">
+
+            <label>Seleziona il viaggio</label>
+                <select th:field="*{travel}" class="form-control mb-4 col-4">
+                    <th:block th:each="travel : ${Listatravel}">
+                        <option th:text="${travel.link.destination}" th:value="${travel.id}"/>                       
+                    </th:block>
+                </select>
 
             <button type="submit" id="submit" class="btn btn-info col-2"> Modifica</button>
         </form>

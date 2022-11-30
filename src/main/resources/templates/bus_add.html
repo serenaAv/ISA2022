@@ -19,10 +19,12 @@
             <input type="text" th:field="*{description}" placeholder="Descrizione" class="form-control mb-4 col-4">
 
             <input type="text" th:field="*{y}" placeholder="Immatricolazione" class="form-control mb-4 col-4">
-
+            
+            Inserisci la data dell'ultima revisione:
             <input type="date" th:field="*{date_last_rev}" placeholder="Ultima revisione" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('date_last_rev')}" th:errors="*{date_last_rev}">username error</span>
-
+            
+            Inserisci la data del ultimo tagliando:
             <input type="date" th:field="*{date_last_carserv}" placeholder="Ultimo tagliando" class="form-control mb-4 col-4">
             <span class="alert alert-danger" th:if="${#fields.hasErrors('date_last_carserv')}" th:errors="*{date_last_carserv}">username error</span>
 

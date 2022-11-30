@@ -86,6 +86,7 @@ public class BookController {
         Book book = bookService.getBookById(id);
 
         model.addAttribute("book", book);
+        model.addAttribute("Listatravel",travelService.getAllTravels());
         return "book_edit";
     }
 }
