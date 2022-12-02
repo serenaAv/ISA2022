@@ -22,7 +22,7 @@ Da notare che le procedure di eliminazione sono eseguite sempre previa conferma 
 ![](src/main/resources/IMG/ER.jpeg)
 
 ## Requisiti ##
-Affinchè il progetto funzioni è necessario creare un database di nome "city2city", ad esempio, all'interno del software MySQL Workbench, ed importare le tabelle già popolate di dati presenti in questa cartella di GitHub. Successivamente è necessario modificare il file application.properties con le proprie credenziali di accesso al database.
+Affinchè il progetto funzioni è necessario creare un database di nome "city2city", ad esempio, all'interno del software MySQL Workbench, ed importare le tabelle già popolate di dati presenti in questa cartella di GitHub all'interno di "DB". Successivamente è necessario modificare il file application.properties con le proprie credenziali di accesso al database.
 <br>
 Soltanto poi sarà possibile avviare il progetto tramite IDE. Di seguito viene presentata la struttura del database "city2city" alla base del progetto.
 <br><br>
