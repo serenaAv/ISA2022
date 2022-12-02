@@ -3,8 +3,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
- <!-- <link rel="stylesheet" href="../static/css/layout.css" type="text/css" />-->
- <!--PERCHE' CSS NON LO VA A TROVARE?-->
  <style>
   body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1; width: 25%; height: 50%; margin:0 auto}
@@ -83,17 +81,11 @@ span.psw {
     <input type="password" placeholder="Password" name="pwd" required>
         
     <button type="submit" id="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Ricordami
-    </label>
-    <br><br>
+    <br>
     <label>Non sei registrato?</label> <a th:href="@{/registration}">Registrati</a>
+    <br>
+    <span><a th:href="@{/forgot_password}">Password dimendicata?</a></span>
 
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw"><a th:href="@{/forgot_password}">Password dimendicata?</a></span>
   </div>
 </form>
 </body>
