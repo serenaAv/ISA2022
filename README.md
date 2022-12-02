@@ -1,7 +1,7 @@
 # Progetto Ingegneria del Software Avanzata a.a. 22/23
 ## Specifica dei requisiti ##
 Il documento dei requisiti è consultabile al seguente link:<br>
-https://docs.google.com/document/d/1sBp-W2q6lQir6Z1gPTQ8DwfvN2wVDgHe/edit?usp=sharing&ouid=105347893123203072224&rtpof=true&sd=true
+https://drive.google.com/file/d/1ly2vg7QIeYEdFzdVKAFo5WFGQbxtog60/view?usp=sharing
 
 ## Introduzione ##
 Il progetto consiste nella realizzazione di un'applicazione Web di un'agenzia che organizza viaggi con bus turistici. L'applicazione è stata pensata tenendo conto di due tipologie di utenti: utenti amministratori (admin) e gli ipotetici clienti dell'agenzia (user). Nello specifico sono state implementate le seguenti funzionalità:
