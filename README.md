@@ -17,7 +17,7 @@ Il progetto consiste nella realizzazione di un'applicazione Web di un'agenzia ch
 - Modifica del proprio profilo con annessa pobbilità di modifcare la password scelta in fase di registrazione. Questa è una funzionalità del solo utente user.
 
 ## Modello ER ##
-INSERIRE MODELLO
+![](src/main/resources/IMG/ER.jpeg)
 
 ## Requisiti ##
 Affinchè il progetto funzioni è necessario creare un database di nome "city2city", ad esempio, all'interno del software MySQL Workbench, ed importare le tabelle già popolate di dati presenti in questa cartella di GitHub. Successivamente è necessario modificare il file application.properties con le proprie credenziali di accesso al database.
@@ -31,10 +31,10 @@ Il progetto è realizzato nel pieno rispetto del pattern Model-view-controller (
 
 L'intero sistema inoltre adotta un'approccio REST basato sui metodi:
 
-GET: per ricevere l'elenco di risorse disponibili (viaggi, collegamenti, user, bus e prenotazioni).
-PUT: per l'inserimento di nuove risorse.
-POST: per l'aggiornamento di risorse esistenti.
-DELETE: per la cancellazione di risorse non più necessarie.
+- GET: per ricevere l'elenco di risorse disponibili (viaggi, collegamenti, user, bus e prenotazioni).
+- PUT: per l'inserimento di nuove risorse.
+- POST: per l'aggiornamento di risorse esistenti.
+- DELETE: per la cancellazione di risorse non più necessarie.
 
 ## Diagramma UML ##
 Di seguito vi è riportato il diagramma UML creato attraverso un tool gratuito trovato in rete, ovvero [LucidChart](https://www.lucidchart.com).
@@ -48,14 +48,32 @@ In agiuntaviene utilizzato Spring Security per la gestione della sicurezza imple
 ## Strumenti utilizzati ##
 Si è scelto di utilizzare i seguenti strumenti:
 
-- Maven - Per la gestione automatica di dipendenze software.
-- Visual Studio Code - Ambiente di sviluppo flessibile e ben supportato.
-- MySQL Workbench - Per la gestione del database.
-- Spring Boot - Framework per applicazioni Web basate su Java
-- Spring Security - Tool di Spring Boot specifico per la gestione della sicurezza
-- Thymeleaf - Motore di template, realizza la parte View di un Model-view-controller
-- Junit 5 - Per eseguire test lato model
-- Selenium - Per eseguire test sul patten MVC
+- [Maven](https://maven.apache.org/) - Per la gestione automatica di dipendenze software.
+- [Visual Studio Code](https://code.visualstudio.com/) - Ambiente di sviluppo flessibile e ben supportato.
+- [MySQL Workbench](https://www.mysql.com/products/workbench/) - Per la gestione del database.
+- [Spring Boot](https://spring.io/projects/spring-boot) - Framework per applicazioni Web basate su Java
+- [Spring Security](https://spring.io/projects/spring-security) - Tool di Spring Boot specifico per la gestione della sicurezza
+- [Thymeleaf](https://www.thymeleaf.org/) - Motore di template, realizza la parte View di un Model-view-controller
+- [Junit 5](https://junit.org/junit5/docs/current/user-guide/) - Per eseguire test lato model
+- [Selenium](https://www.selenium.dev) - Per eseguire test sul patten MVC
+- [LucidChart](https://www.lucidchart.com) - Per la modellazione
 
 ## Test ##
-Il progetto è correlato da unit test ed integration test. I primi sono stati realizzati attraverso Junit5 e si occupano di effettuare test (basati su proprietà) automatizzati relativi a metodi GET definiti nella classi del model. A questo scopo sono state definite una serie di classi contenute nel package "utils" che consentano di generare stringhe e numeri randomici. L'integration test invece è realizzato attraverso il framework Selenium: si occupa di simulare il comportamento dell'utente attraverso il browser web (Google Chrome) spostandosi tra le pagine web, inserendo dati e interrogando il database.
+Il progetto è correlato da unit test ed integration test. I primi sono stati realizzati attraverso Junit5 e si occupano di effettuare test (basati su proprietà) automatizzati relativi a metodi GET definiti nella classi del model. A questo scopo sono state definite una serie di classi contenute nel package "utils" che consentono di generare stringhe e numeri randomici. L'integration test invece è realizzato attraverso il framework Selenium: si occupa di simulare il comportamento dell'utente attraverso il browser web (Google Chrome) spostandosi tra le pagine web, inserendo dati e interrogando il database.
+
+## Sviluppi futuri ##
+- Definizione di nuovi test sia di unità che ti integrazione
+- Utilizzo di CSS per rendere GUI più user-friendly
+
+## Schermate di esempio ##
+#### Schermata visualizzazione bus ####
+![](src/main/resources/IMG/bus.png)
+
+#### Schermata prenotazioni ####
+![](src/main/resources/IMG/book.png)
+
+#### Schermata utenti ####
+![](src/main/resources/IMG/user.png)
+
+#### Schermata registrazione ####
+![](src/main/resources/IMG/registrazione.png)
